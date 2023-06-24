@@ -47,12 +47,10 @@ public class Usuario implements Serializable {
     private Date dataNascimento;
     @Column(name =  "TB01_SEXO")
     private String sexo;
-    @OneToOne
-    @JoinColumn(name = "FKTB01TB08_COD_TIPO_SANGUINEO")
-    private TipoSanguineo tipoSanguineo;
-    @OneToOne
-    @JoinColumn(name = "FKTB01TB09_COD_FATOR_RH")
-    private  FatorRH fatorRH;
+    @Column(name = "TB01_TIPO_SANGUINEO")
+    private String tipoSanguineo;
+    @Column(name = "TB01_FATOR_RH")
+    private  String fatorRH;
 
     public Usuario() {
 
@@ -170,19 +168,19 @@ public class Usuario implements Serializable {
         this.sexo = sexo;
     }
 
-    public TipoSanguineo getTipoSanguineo() {
+    public String getTipoSanguineo() {
         return tipoSanguineo;
     }
 
-    public void setTipoSanguineo(TipoSanguineo tipoSanguineo) {
+    public void setTipoSanguineo(String tipoSanguineo) {
         this.tipoSanguineo = tipoSanguineo;
     }
 
-    public FatorRH getFatorRH() {
+    public String getFatorRH() {
         return fatorRH;
     }
 
-    public void setFatorRH(FatorRH fatorRH) {
+    public void setFatorRH(String fatorRH) {
         this.fatorRH = fatorRH;
     }
 
