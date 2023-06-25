@@ -1,0 +1,29 @@
+package com.akira.apihemomar.controllers;
+
+
+import com.akira.apihemomar.dto.response.HorarioRespDto;
+import com.akira.apihemomar.services.HorarioService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Date;
+import java.util.List;
+
+@RestController
+@RequestMapping("/horarios")
+public class HorarioController {
+    @Autowired
+    private HorarioService  horarioService;
+
+    @GetMapping
+    public ResponseEntity<List<HorarioRespDto>> buscarHorariosDiasSemana(
+            @RequestParam(value = "data", required = false) @DateTimeFormat(pattern = "dd-MM-yyyy") Date data) {
+        return ResponseEntity.ok(horarioService.buscarHorarioPeloDia(data));
+    }
+
+}
