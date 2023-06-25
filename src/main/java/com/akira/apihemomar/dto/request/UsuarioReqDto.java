@@ -12,6 +12,7 @@ import javax.validation.constraints.Size;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Objects;
 
 public class UsuarioReqDto {
     private SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
@@ -141,10 +142,10 @@ public class UsuarioReqDto {
     public void setFatorRH(FATORRH fatorRH) {
         this.fatorRH = fatorRH;
     }
-    public void UPCASE(){
+    public void UPPERCASE(){
         this.nome=this.nome.toUpperCase();
-        this.nomePai=this.nomePai.toUpperCase();
-        this.nomeMae=this.nomeMae.toUpperCase();
+        this.nomePai= Objects.isNull(this.nomePai)?this.nomePai:this.nomePai.toUpperCase();
+        this.nomeMae=Objects.isNull(this.nomeMae)?this.nomeMae:this.nomeMae.toUpperCase();
         this.email=this.email.toUpperCase();
         this.login=this.login.toUpperCase();
 

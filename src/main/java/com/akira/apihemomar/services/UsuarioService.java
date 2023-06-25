@@ -29,6 +29,10 @@ public class UsuarioService {
                 .map(this::converterUsuarioEmDto)
                 .collect(Collectors.toList());
     }
+    public Usuario buscarUsuarioId(Long id){
+        //todo:substituir exception pela customizada
+        return usuarioRepository.findById(id).orElseThrow(()->new RuntimeException("Usuario não encontrado !"));
+    }
 
     @Transactional
     public UsuarioRespDto cadastraUsuario(UsuarioReqDto usuarioReqDto) {
@@ -43,7 +47,7 @@ public class UsuarioService {
     }
 
     private Usuario converterDtoEmCadastroUsuario(UsuarioReqDto usuarioReqDto) {
-        usuarioReqDto.UPCASE();
+        usuarioReqDto.UPPERCASE();
         Usuario usuario = modelMapper.map(usuarioReqDto, Usuario.class);
         usuario.setSenha(Criptografia.md5(usuarioReqDto.getSenha()));
         usuario.setDataCadastro(new Date());

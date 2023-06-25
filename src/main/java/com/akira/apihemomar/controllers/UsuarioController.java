@@ -3,7 +3,6 @@ package com.akira.apihemomar.controllers;
 
 import com.akira.apihemomar.dto.request.UsuarioReqDto;
 import com.akira.apihemomar.dto.response.UsuarioRespDto;
-import com.akira.apihemomar.models.Usuario;
 import com.akira.apihemomar.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,7 +24,7 @@ public class UsuarioController {
         return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.cadastraUsuario(usuarioReqDto));
     }
     @GetMapping
-    public ResponseEntity<List<UsuarioRespDto>> findall(){
+    public ResponseEntity<List<UsuarioRespDto>> findAll(){
         return ResponseEntity.ok(usuarioService.findAll());
     }
 }
