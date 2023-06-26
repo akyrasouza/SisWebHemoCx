@@ -1,11 +1,12 @@
 package com.akira.apihemomar.models;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
 @Table(name = "TB12_INDICE_SEMANA")
-public class IndiceSemana {
+public class IndiceSemana implements Serializable {
     @Id
     @Column(name = "TB12_COD_INDICE_SEMANA")
     private Integer id;

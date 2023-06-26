@@ -3,13 +3,14 @@ package com.akira.apihemomar.models;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
 @Entity
 @Table(name = "TB02_ENDERECO")
 @SequenceGenerator(name = "TB02_ENDERECO_TB02_COD_ENDERECO_SEQ", sequenceName = "TB02_ENDERECO_TB02_COD_ENDERECO_SEQ", allocationSize = 1)
-public class Endereco {
+public class Endereco implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TB02_ENDERECO_TB02_COD_ENDERECO_SEQ")
     @Column(name = "TB02_COD_ENDERECO")

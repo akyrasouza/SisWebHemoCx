@@ -1,12 +1,13 @@
 package com.akira.apihemomar.models;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
 @Table(name = "TB11_HORARIO")
 @SequenceGenerator(name = "TB11_HORARIO_TB11_COD_HORARIO_SEQ", sequenceName = "TB11_HORARIO_TB11_COD_HORARIO_SEQ", allocationSize = 1)
-public class Horario {
+public class Horario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TB11_HORARIO_TB11_COD_HORARIO_SEQ")
     @Column(name = "TB11_COD_HORARIO")
