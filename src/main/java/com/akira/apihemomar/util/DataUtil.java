@@ -1,5 +1,6 @@
 package com.akira.apihemomar.util;
 
+import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
@@ -11,5 +12,19 @@ public class DataUtil {
         calendario.setTime(data);
         int indiceDiaDaSemana = calendario.get(Calendar.DAY_OF_WEEK);
        return indiceDiaDaSemana;
+    }
+    public static Boolean dataPassado(Date  dataComparacao){
+        Date dataAtual = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(dataAtual);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        Date dataZerado = calendar.getTime();
+        if (dataComparacao.before(dataZerado)) {
+              return true;
+        }
+        return false;
     }
 }

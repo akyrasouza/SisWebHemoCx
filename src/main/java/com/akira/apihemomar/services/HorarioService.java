@@ -20,6 +20,11 @@ public class HorarioService {
     private HorarioRepository  horarioRepository;
     @Autowired
     private ModelMapper modelMapper;
+
+    public Horario buscarHorarioId(Long id){
+        //todo:substituir exception pela customizada
+        return horarioRepository.findById(id).orElseThrow(()->new RuntimeException("Horário  não encontrado !"));
+    }
     public List<HorarioRespDto> buscarHorarioPeloDia(Date data){
        Integer inciceSemana= DataUtil.getIndiceData(data);
         return horarioRepository.buscarHorariosPeloDia(inciceSemana)

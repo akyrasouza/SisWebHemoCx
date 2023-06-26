@@ -20,6 +20,10 @@ public class StatusDoacao implements Serializable {
     public StatusDoacao() {
     }
 
+    public StatusDoacao(Long id) {
+        this.id=id;
+    }
+
     public Long getId() {
         return id;
     }

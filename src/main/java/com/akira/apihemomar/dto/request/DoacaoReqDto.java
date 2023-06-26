@@ -3,9 +3,13 @@ package com.akira.apihemomar.dto.request;
 import com.akira.apihemomar.annotation.DateCustom;
 
 import javax.validation.constraints.NotNull;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Objects;
 
 public class DoacaoReqDto {
+    private SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
     @NotNull(message = "A  data de doação não pode vazia ou nula!")
     @DateCustom
     private String dataDoacao;
@@ -17,11 +21,12 @@ public class DoacaoReqDto {
     @NotNull(message = "O horário de doação não pode vazio ou nulo!")
     private Long horario;
 
-    public String getDataDoacao() {
-        return dataDoacao;
+    public Date getDataDoacao() throws ParseException {
+        return formatter.parse(this.dataDoacao);
     }
 
     public void setDataDoacao(String dataDoacao) {
+
         this.dataDoacao = dataDoacao;
     }
 
