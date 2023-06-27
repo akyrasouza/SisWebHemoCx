@@ -15,7 +15,7 @@ public class StatusDoacao implements Serializable {
     private Long id;
     @Column(name = "TB04_STATUS_DESCRICAO")
     private String descricao;
-    @Column(name = "TB04_ATIVO")
+    @Column(name = "TB04_STATUS_ATIVO")
     private boolean ativo;
     public StatusDoacao() {
     }

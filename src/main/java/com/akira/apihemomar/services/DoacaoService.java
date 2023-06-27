@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.text.ParseException;
+import java.util.Objects;
 
 @Service
 public class DoacaoService {
@@ -57,6 +58,10 @@ public class DoacaoService {
     private void validarCadastroDoacao(DoacaoReqDto doacaoReqDto) {
         //todo:trocar exception
         try {
+           HistoricoDoacao historicoDoacao= historicoDoacaoService.buscarHistoricosData(doacaoReqDto.getDataDoacao(),doacaoReqDto.getUsuario());
+           if(Objects.nonNull(historicoDoacao)){
+               throw new RuntimeException("Data já cadastrada !");
+           }
             if (DataUtil.dataPassado(doacaoReqDto.getDataDoacao())) {
                 throw new RuntimeException("A data informada não pode ser anterior á data  atual !");
             }

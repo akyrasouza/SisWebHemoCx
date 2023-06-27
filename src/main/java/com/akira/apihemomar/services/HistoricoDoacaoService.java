@@ -26,4 +26,8 @@ public class HistoricoDoacaoService {
         historicoDoacao.setStatusDoacao(new StatusDoacao(1L));
         historicoDoacaoRepository.save(historicoDoacao);
     }
+
+    public HistoricoDoacao buscarHistoricosData(Date data, Long usuarioId){
+       return historicoDoacaoRepository.buscarHistoricosData(data,usuarioId);
+    }
 }
