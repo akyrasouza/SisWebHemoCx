@@ -20,6 +20,9 @@ import java.util.stream.Collectors;
 public class UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepository;
+
+    @Autowired
+    private EnderecoService enderecoService;
     @Autowired
     private ModelMapper modelMapper;
 
@@ -38,7 +41,10 @@ public class UsuarioService {
     public UsuarioRespDto cadastraUsuario(UsuarioReqDto usuarioReqDto) {
         validarCadastroUsuario(usuarioReqDto);
         Usuario usuario = converterDtoEmCadastroUsuario(usuarioReqDto);
-        return converterUsuarioEmDto(usuarioRepository.save(usuario));
+        usuario.setLogin(usuarioReqDto.getEmail());
+        usuario=usuarioRepository.save(usuario);
+        enderecoService.cadastrarEndereco(usuario.getId(),usuarioReqDto.getEndereco());
+        return converterUsuarioEmDto(usuario);
 
     }
 

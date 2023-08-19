@@ -4,9 +4,11 @@ package com.akira.apihemomar.services;
 import com.akira.apihemomar.dto.request.EnderecoReqDto;
 import com.akira.apihemomar.dto.response.EnderecoRespDto;
 import com.akira.apihemomar.models.Endereco;
+import com.akira.apihemomar.models.Usuario;
 import com.akira.apihemomar.repository.EnderecoRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,11 +25,12 @@ public class EnderecoService {
     private EnderecoRepository  enderecoRepository;
 
     @Autowired
+    @Lazy
     private UsuarioService  usuarioService;
 
     @Transactional
-    public void cadastrarEndereco(EnderecoReqDto enderecoReqDto){
-       Endereco endereco =converterDtoEmEndereco(enderecoReqDto);
+    public void cadastrarEndereco(Long usuarioId,EnderecoReqDto enderecoReqDto){
+       Endereco endereco =converterDtoEmEndereco(usuarioId,enderecoReqDto);
         enderecoRepository.save(endereco);
     }
     public List<EnderecoRespDto> findAll() {
@@ -42,12 +45,12 @@ public class EnderecoService {
     }
 
 
-    private  Endereco converterDtoEmEndereco(EnderecoReqDto enderecoReqDto) {
+    private  Endereco converterDtoEmEndereco(Long usuarioId,EnderecoReqDto enderecoReqDto) {
         enderecoReqDto.UPPERCASE();
         Endereco endereco=modelMapper.map(enderecoReqDto,Endereco.class);
         endereco.setAtivo(true);
         endereco.setDataCadastro(new Date());
-        endereco.setUsuario(usuarioService.buscarUsuarioId(enderecoReqDto.getUsuario()));
+        endereco.setUsuario(usuarioService.buscarUsuarioId(usuarioId));
         return endereco;
     }
 

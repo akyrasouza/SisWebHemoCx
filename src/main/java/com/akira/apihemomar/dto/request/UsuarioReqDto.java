@@ -7,6 +7,7 @@ import com.akira.apihemomar.enums.TIPOSANGUINEO;
 import org.hibernate.validator.constraints.br.CPF;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.text.ParseException;
@@ -16,9 +17,6 @@ import java.util.Objects;
 
 public class UsuarioReqDto {
     private SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-    @NotNull(message = "O login não pode vazio ou nulo!")
-    @Size(max = 100,message = "O tamanho maximo do login permitido é 100 caracteres!")
-    private String login;
     @NotNull(message = "O nome não pode vazio ou nulo!")
     @Size(max = 255,message = "O tamanho maximo do nome  permitido é 255 caracteres!")
     private String nome;
@@ -33,9 +31,9 @@ public class UsuarioReqDto {
     private String email;
     @Size(max= 15,message = "O tamanho maximo da senha permitido é 15 caracteres!")
     private String telefone;
-    @Size(max= 255,message = "O tamanho maximo do nome do pai permitido é 255 caracteres!")
-    private String nomePai;
+
     @Size(max= 255,message = "O tamanho maximo do nome da mãe permitido é 255 caracteres!")
+    @NotBlank(message = "O nome da mãe não pode ser vazio ou nulo !")
     private String nomeMae;
     @NotNull(message = "A  data de nascimento não pode vazia ou nula!")
     @DateCustom
@@ -47,12 +45,15 @@ public class UsuarioReqDto {
     @NotNull(message = "O fator RH não pode vazio ou nulo!")
     private FATORRH fatorRH;
 
-    public String getLogin() {
-        return login;
+    @NotNull(message = "O endereço não pode ser vazio ou nulo !")
+    private EnderecoReqDto endereco;
+
+    public EnderecoReqDto getEndereco() {
+        return endereco;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setEndereco(EnderecoReqDto endereco) {
+        this.endereco = endereco;
     }
 
     public String getNome() {
@@ -93,14 +94,6 @@ public class UsuarioReqDto {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
-    }
-
-    public String getNomePai() {
-        return nomePai;
-    }
-
-    public void setNomePai(String nomePai) {
-        this.nomePai = nomePai;
     }
 
     public String getNomeMae() {
@@ -144,10 +137,8 @@ public class UsuarioReqDto {
     }
     public void UPPERCASE(){
         this.nome=this.nome.toUpperCase();
-        this.nomePai= Objects.isNull(this.nomePai)?this.nomePai:this.nomePai.toUpperCase();
         this.nomeMae=Objects.isNull(this.nomeMae)?this.nomeMae:this.nomeMae.toUpperCase();
-        this.email=this.email.toUpperCase();
-        this.login=this.login.toUpperCase();
+
 
     }
 }

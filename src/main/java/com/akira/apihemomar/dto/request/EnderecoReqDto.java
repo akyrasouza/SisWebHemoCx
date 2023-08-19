@@ -23,8 +23,6 @@ public class EnderecoReqDto {
     private String localidade;
     @NotBlank(message = "Uf não pode ser vazio ou nulo !")
     private String uf;
-    @NotNull(message = "O usuario não  pode ser vazio ou nulo !")
-    private Long usuario;
 
     public String getCep() {
         return cep;
@@ -82,13 +80,6 @@ public class EnderecoReqDto {
         this.uf = uf;
     }
 
-    public Long getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Long usuario) {
-        this.usuario = usuario;
-    }
     public void UPPERCASE(){
         this.logradouro=this.logradouro.toUpperCase();
         this.bairro=this.bairro.toUpperCase();
