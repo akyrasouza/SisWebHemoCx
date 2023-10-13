@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Medilab Bootstrap Template - Index</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+    * Template Name: Medilab
+    * Updated: Sep 18 2023 with Bootstrap v5.3.2
+    * Template URL: https://bootstrapmade.com/medilab-free-medical-bootstrap-theme/
+    * Author: BootstrapMade.com
+    * License: https://bootstrapmade.com/license/
+    ======================================================== -->
+</head>
+
+<body>
+  <!-- ======= Cadastro Section ======= -->
+  <section id="cadastro" class="cadastro">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Cadastro</h2>
+        <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+      </div>
+
+      <div class="row">
+        <!-- <div class="col-lg-6">
+            <div class="member d-flex align-items-start">
+              <div class="pic"><img src="assets/img/doctors/doctors-1.jpg" class="img-fluid" alt=""></div>
+              <div class="member-info">
+                <h4>Walter White</h4>
+                <span>Chief Medical Officer</span>
+                <p>Explicabo voluptatem mollitia et repellat qui dolorum quasi</p>
+                <div class="social">
+                  <a href=""><i class="ri-twitter-fill"></i></a>
+                  <a href=""><i class="ri-facebook-fill"></i></a>
+                  <a href=""><i class="ri-instagram-fill"></i></a>
+                  <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
+                </div>
+              </div>
+            </div>
+          </div> -->
+
+        <div class="container">
+          <form novalidate="false" id="formEtapa" method="POST">
+            <!--Etapa 1-->
+            <div class="form-group" id="etapa1">
+              <div class="row g-3">
+                <!--Nome-->
+                <div class="col-md-4">
+
+                  <label class="form-label" for="nome">*Nome Completo</label>
+                  <input type="text" class="form-control custom-border" id="nome" required>
+                </div>
+                <!--CPF-->
+                <div class="col-md-2">
+                  <label class="form-label" for="cpf">*CPF</label>
+                  <input type="text" class="form-control custom-border" id="cpf" placeholder="000.000.000-00" required>
+                </div>
+                <!--Data Nascimento-->
+                <div class="col-md-3">
+                  <label class="form-label" for="data_nasc">*Data de Nascimento</label>
+                  <input type="text" class="form-control custom-border centered" id="dataNascimento" placeholder="____/____/____" required>
+                </div>
+                <!--Sexo-->
+                <div class="col-md-2">
+                  <label class="form-label" for="sexo">*Sexo</label>
+                  <select class="form-select" id="sexo" required>
+                    <option selected value="F">FEMENINO</option>
+                    <option value="M">MASCULINO</option>
+                  </select>
+                </div>
+                <!--Nome Mae-->
+                <div class="col-md-4">
+                  <label class="form-label" for="nome_mae">*Nome da Mãe</label>
+                  <input type="text" class="form-control custom-border" id="nome_mae" required>
+                </div>
+                <!--Telefone-->
+                <div class="col-md-2">
+                  <label class="form-label" for="tel">*Telefone</label>
+                  <input type="text" class="form-control custom-border" id="tel" placeholder="(DD)900-0000" required>
+                </div>
+                <div class="col-1"></div>
+                <!--Tipo Sanguineo Dropdown-->
+                <div class="col-md-2">
+                  <label class="form-label" for="tp_sangue">*Tipo Sanguíneo</label>
+                  <select class="form-select" id="tp_sangue" required>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="AB">AB</option>
+                    <option value="O">O</option>
+                  </select>
+                </div>
+                <!--Fator RH Dropdown-->
+                <div class="col-md-2">
+                  <label class="form-label" for="ft_rh">*Fator RH</label>
+                  <select class="form-select custom-border" id="fatorRH" required>
+                    <option value="POSITIVO">POSITIVO</option>
+                    <option value="NEGATIVO">NEGATIVO</option>
+                  </select>
+                </div>
+
+                <!--Email e senha-->
+                <div class="col-md-4">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" class="form-control custom-border" id="email" required>
+                </div>
+                <div class="col-md-2">
+                  <label for="senha" class="form-label">Senha</label>
+                  <input type="password" class="form-control custom-border" id="senha" min="8" max="16" required>
+                </div>
+              </div>
+              <button type="button" class="btn btn-primary mt-3" onclick="proximaEtapa(2)">Próxima</button>
+            </div>
+            <!--Etapa 2-->
+            <div class="form-group" id="etapa2" style="display: none;">
+              <div class="row g-3">
+                <!--CEP-->
+                <div class="col-md-4">
+                  <label for="cep" class="form-label">*Cep</label>
+                  <input type="text" class="form-control" id="cep" required>
+                </div>
+                <!--Endereco-->
+                <div class="col-md-4">
+                  <label for="endereco" class="form-label">*Endereço</label>
+                  <input type="text" class="form-control" id="endereco" required>
+                </div>
+                <!--Número-->
+                <div class="col-md-4">
+                  <label for="num_endereco" class="form-label">*Número</label>
+                  <input type="number" class="form-control" id="num_endereco" required>
+                </div>
+                <!--Estado-->
+                <div class="col-md-1">
+                  <label for="estado" class="form-label">*Estado</label>
+                  <input type="text" class="form-control" id="estado" required>
+                </div>
+                <!--Cidade-->
+                <div class="col-md-2">
+                  <label for="cidade" class="form-label">*Cidade</label>
+                  <input type="text" class="form-control" id="cidade" required>
+                </div>
+                <!--Bairro-->
+                <div class="col-md-4">
+                  <label for="bairro" class="form-label">*Bairro</label>
+                  <input type="text" class="form-control" id="bairro" required>
+                </div>
+                <!--Complemento-->
+                <div class="col-md-4">
+                  <label for="complemento" class="form-label">Complemento</label>
+                  <input type="text" class="form-control" id="complemento">
+                </div>
+              </div>
+              <button type="button" class="btn btn-secondary mt-5" onclick="etapaAnterior(1)">Anterior</button>
+              <button type="submit" class="btn btn-success mt-5 ms-4" onclick="validarUltimaEtapa()">Enviar</button>
+            </div>
+
+        </div>
+        </form>
+      </div>
+    </div>
+    </div>
+  </section><!-- End Doctors Section -->
+  <!-- Vendor JS Files -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+  <!--Etapas Formulario-->
+  <script>
+    $('.dropdown-toggle').dropdown()
+    let etapaAtual = 1;
+
+    function proximaEtapa(etapa) {
+      const camposValidos = validarCamposEtapa(etapaAtual);
+
+      if (!camposValidos) {
+        alert("Preencha todos os campos obrigatórios na etapa atual.");
+        return;
+      }
+      document.getElementById('etapa' + etapaAtual).style.display = 'none';
+      document.getElementById('etapa' + etapa).style.display = 'block';
+      etapaAtual = etapa;
+    }
+
+    function etapaAnterior(etapa) {
+      document.getElementById('etapa' + etapaAtual).style.display = 'none';
+      document.getElementById('etapa' + etapa).style.display = 'block';
+      etapaAtual = etapa;
+    }
+    function validarCamposEtapa(etapa) {
+      const camposEtapa = document.querySelectorAll(`#etapa${etapa} input[required]`);
+
+      for (const campo of camposEtapa) {
+        if (campo.value === "") {
+          return false;
+        }
+      }
+
+      return true;
+    }
+
+    function enviarRelatorio() {
+      // Recolha os dados do formulário ou crie um objeto de dados do relatório
+      const data = {
+        "cpf": document.querySelector("#cpf").value,
+        "dataNascimento": document.querySelector("#dataNascimento").value,
+        "email": document.querySelector("#email").value,
+        "endereco": {
+          "bairro": document.querySelector("#bairro").value,
+          "cep": document.querySelector("#cep").value,
+          "complemento": document.querySelector("#complemento").value,
+          "localidade": document.querySelector("#cidade").value,
+          "numero": document.querySelector("#num_endereco").value,
+          "uf": document.querySelector("#estado").value
+        },
+        "fatorRH": document.querySelector("#fatorRH").value,
+        "nome": document.querySelector("#nome").value,
+        "nomeMae": document.querySelector("#nome_mae").value,
+        "senha": document.querySelector("#senha").value,
+        "sexo": document.querySelector("#sexo").value,
+        "telefone": document.querySelector("#tel").value,
+        "tipoSanguineo": document.querySelector("#tp_sangue").value
+
+      };
+      console.log(data)
+      //Faça a solicitação POST usando o Axios
+      const config = {
+        headers: {
+          'Content-Type': 'application/json', // Especifique o tipo de conteúdo
+          // Você pode adicionar outros cabeçalhos se necessário
+        },
+      };
+      axios.post('http://26.49.188.195:8080/usuarios', data, config)
+        .then(function (response) {
+          alert("Relatório enviado com sucesso!");
+        })
+        .catch(function (error) {
+          alert("Ocorreu um erro ao enviar o relatório.");
+        });
+
+    }
+
+    function validarUltimaEtapa() {
+      const camposValidos = validarCamposEtapa(etapaAtual);
+
+      if (!camposValidos) {
+        alert("Preencha todos os campos obrigatórios na última etapa.");
+      } else {
+        alert('enviando relatorio');
+        enviarRelatorio();
+      }
+    }
+  </script>
+  <!--Máscaras Input-->
+  <script>
+    $(document).ready(function () {
+      $('#cpf').mask('000.000.000-00', { reverse: true });
+    });
+
+    $(document).ready(function () {
+      $('#dataNascimento').mask('00-00-0000');
+    });
+
+    $(document).ready(function () {
+      $('#tel').mask('(00)000-0000');
+    });
+  </script>
+
+</body>
+
+</html>
