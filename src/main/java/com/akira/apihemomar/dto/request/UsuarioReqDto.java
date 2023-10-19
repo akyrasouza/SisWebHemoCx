@@ -6,6 +6,7 @@ import com.akira.apihemomar.enums.SEXO;
 import com.akira.apihemomar.enums.TIPOSANGUINEO;
 import org.hibernate.validator.constraints.br.CPF;
 
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -44,18 +45,66 @@ public class UsuarioReqDto {
     private TIPOSANGUINEO tipoSanguineo;
     @NotNull(message = "O fator RH não pode vazio ou nulo!")
     private FATORRH fatorRH;
-
-    @NotNull(message = "O endereço não pode ser vazio ou nulo !")
-    private EnderecoReqDto endereco;
-
-    public EnderecoReqDto getEndereco() {
-        return endereco;
+    @NotBlank(message = "O Cep não pode ser vazio ou nulo !")
+   // @Size(max = 9, message = "O Cep deverá conter no máximo 9 caracteres !")
+    private String cep;
+    @NotBlank(message = "O Bairro não pode ser vazio ou nulo !")
+    @Size(max = 100, message = "O Bairro deverá conter no máximo 100 caracteres !")
+    private String bairro;
+    @Size(max = 100, message = "O Complemento deverá conter no máximo 100 caracteres !")
+    private String complemento;
+    private String numero;
+    @NotNull(message = "A localidade  pode ser vazia ou nula !")
+    private String localidade;
+    @NotBlank(message = "Uf não pode ser vazio ou nulo !")
+    private String uf;
+    public String getCep() {
+        return cep;
     }
 
-    public void setEndereco(EnderecoReqDto endereco) {
-        this.endereco = endereco;
+    public void setCep(String cep) {
+        this.cep = cep;
     }
 
+    public String getBairro() {
+        return bairro;
+    }
+
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
+
+    public String getComplemento() {
+        return complemento;
+    }
+
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
+    }
+
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+
+    public String getLocalidade() {
+        return localidade;
+    }
+
+    public void setLocalidade(String localidade) {
+        this.localidade = localidade;
+    }
+
+    public String getUf() {
+        return uf;
+    }
+
+    public void setUf(String uf) {
+        this.uf = uf;
+    }
     public String getNome() {
         return nome;
     }

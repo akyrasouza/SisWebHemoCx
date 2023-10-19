@@ -3,6 +3,8 @@ package com.akira.apihemomar.services;
 
 import com.akira.apihemomar.dto.request.UsuarioReqDto;
 import com.akira.apihemomar.dto.response.UsuarioRespDto;
+import com.akira.apihemomar.exception.ConflitoException;
+import com.akira.apihemomar.exception.NotFoundException;
 import com.akira.apihemomar.models.Usuario;
 import com.akira.apihemomar.repository.UsuarioRepository;
 import com.akira.apihemomar.util.Criptografia;
@@ -34,7 +36,7 @@ public class UsuarioService {
     }
     public Usuario buscarUsuarioId(Long id){
         //todo:substituir exception pela customizada
-        return usuarioRepository.findById(id).orElseThrow(()->new RuntimeException("Usuario não encontrado !"));
+        return usuarioRepository.findById(id).orElseThrow(()->new NotFoundException("Usuario não encontrado !"));
     }
 
     @Transactional
@@ -43,7 +45,7 @@ public class UsuarioService {
         Usuario usuario = converterDtoEmCadastroUsuario(usuarioReqDto);
         usuario.setLogin(usuarioReqDto.getEmail());
         usuario=usuarioRepository.save(usuario);
-        enderecoService.cadastrarEndereco(usuario.getId(),usuarioReqDto.getEndereco());
+        enderecoService.cadastrarEndereco(usuario.getId(),usuarioReqDto);
         return converterUsuarioEmDto(usuario);
 
     }
@@ -67,11 +69,11 @@ public class UsuarioService {
         //todo:mudar para exception customizada
         Optional<Usuario>  usuarioEmail=usuarioRepository.findByEmailIgnoreCase(usuarioReqDto.getEmail());
         if(usuarioEmail.isPresent()){
-           throw new RuntimeException("Já existe um usuario com este E-mail !");
+           throw new ConflitoException("Já existe um usuario com este E-mail !");
         }
         Optional<Usuario>  usuarioCpf=usuarioRepository.findByCpf(usuarioReqDto.getCpf());
         if(usuarioCpf.isPresent()){
-            throw new RuntimeException("Já existe um usuario com este CPF !");
+            throw new ConflitoException("Já existe um usuario com este CPF !");
         }
 
     }

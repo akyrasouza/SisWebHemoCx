@@ -15,21 +15,14 @@ public class Endereco implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TB02_ENDERECO_TB02_COD_ENDERECO_SEQ")
     @Column(name = "TB02_COD_ENDERECO")
     private Long id;
-
     @Column(name = "TB02_CEP")
     private String cep;
-
-    @Column(name = "TB02_LOGRADOURO")
-    private String logradouro;
-
     @Column(name = "TB02_BAIRRO")
     private String bairro;
-
     @Column(name = "TB02_COMPLEMENTO")
     private String complemento;
-
     @Column(name = "TB02_NUMERO")
-    private String numero;
+    private Integer numero;
     @Column(name = "TB02_LOCALIDADE")
     private String localidade;
     @Column(name = "TB02_UF")
@@ -63,14 +56,6 @@ public class Endereco implements Serializable {
         this.cep = cep;
     }
 
-    public String getLogradouro() {
-        return logradouro;
-    }
-
-    public void setLogradouro(String logradouro) {
-        this.logradouro = logradouro;
-    }
-
     public String getBairro() {
         return bairro;
     }
@@ -87,11 +72,11 @@ public class Endereco implements Serializable {
         this.complemento = complemento;
     }
 
-    public String getNumero() {
+    public Integer getNumero() {
         return numero;
     }
 
-    public void setNumero(String numero) {
+    public void setNumero(Integer numero) {
         this.numero = numero;
     }
 
@@ -140,11 +125,11 @@ public class Endereco implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Endereco endereco = (Endereco) o;
-        return Objects.equals(id, endereco.id) && Objects.equals(cep, endereco.cep) && Objects.equals(logradouro, endereco.logradouro) && Objects.equals(bairro, endereco.bairro) && Objects.equals(complemento, endereco.complemento) && Objects.equals(numero, endereco.numero) && Objects.equals(localidade, endereco.localidade) && Objects.equals(uf, endereco.uf) && Objects.equals(ativo, endereco.ativo) && Objects.equals(dataCadastro, endereco.dataCadastro) && Objects.equals(usuario, endereco.usuario);
+        return Objects.equals(id, endereco.id) && Objects.equals(cep, endereco.cep)  && Objects.equals(bairro, endereco.bairro) && Objects.equals(complemento, endereco.complemento) && Objects.equals(numero, endereco.numero) && Objects.equals(localidade, endereco.localidade) && Objects.equals(uf, endereco.uf) && Objects.equals(ativo, endereco.ativo) && Objects.equals(dataCadastro, endereco.dataCadastro) && Objects.equals(usuario, endereco.usuario);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, cep, logradouro, bairro, complemento, numero, localidade, uf, ativo, dataCadastro, usuario);
+        return Objects.hash(id, cep,bairro, complemento, numero, localidade, uf, ativo, dataCadastro, usuario);
     }
 }

@@ -2,6 +2,7 @@ package com.akira.apihemomar.services;
 
 
 import com.akira.apihemomar.dto.request.EnderecoReqDto;
+import com.akira.apihemomar.dto.request.UsuarioReqDto;
 import com.akira.apihemomar.dto.response.EnderecoRespDto;
 import com.akira.apihemomar.models.Endereco;
 import com.akira.apihemomar.models.Usuario;
@@ -29,8 +30,8 @@ public class EnderecoService {
     private UsuarioService  usuarioService;
 
     @Transactional
-    public void cadastrarEndereco(Long usuarioId,EnderecoReqDto enderecoReqDto){
-       Endereco endereco =converterDtoEmEndereco(usuarioId,enderecoReqDto);
+    public void cadastrarEndereco(Long usuarioId, UsuarioReqDto usuarioReqDto){
+       Endereco endereco =converterDtoEmEndereco(usuarioId,usuarioReqDto);
         enderecoRepository.save(endereco);
     }
     public List<EnderecoRespDto> findAll() {
@@ -45,9 +46,8 @@ public class EnderecoService {
     }
 
 
-    private  Endereco converterDtoEmEndereco(Long usuarioId,EnderecoReqDto enderecoReqDto) {
-        enderecoReqDto.UPPERCASE();
-        Endereco endereco=modelMapper.map(enderecoReqDto,Endereco.class);
+    private  Endereco converterDtoEmEndereco(Long usuarioId,UsuarioReqDto usuarioReqDto) {
+        Endereco endereco=modelMapper.map(usuarioReqDto,Endereco.class);
         endereco.setAtivo(true);
         endereco.setDataCadastro(new Date());
         endereco.setUsuario(usuarioService.buscarUsuarioId(usuarioId));
