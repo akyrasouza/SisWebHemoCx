@@ -33,6 +33,14 @@ h6 {
   font-family: "Raleway", sans-serif;
 }
 
+.error-toast {
+  background: linear-gradient(to right, #d91e05, #c9501c) !important;
+}
+
+.success-toast {
+  background: linear-gradient(to right, #00b09b, #96c93d) !important;
+}
+
 /*--------------------------------------------------------------
 # Preloader
 --------------------------------------------------------------*/
@@ -224,7 +232,7 @@ h6 {
 # Navigation Menu
 --------------------------------------------------------------*/
 /**
-* Desktop Navigation 
+* Desktop Navigation
 */
 .navbar {
   padding: 0;
@@ -344,7 +352,7 @@ h6 {
 }
 
 /**
-* Mobile Navigation 
+* Mobile Navigation
 */
 .mobile-nav-toggle {
   color: #2c4964;
@@ -1753,11 +1761,23 @@ section {
 }
 
 /* Define largura e cor da borda*/
-.custom-border {
+/* .custom-border {
   border: 1px solid #e4717a;
-}
+} */
 
 /* Centralizar texto do input*/
 .centered {
   text-align: center;
+}
+
+#container_icon{
+  position: relative;
+}
+#container_icon > i{
+  position: absolute;
+  top: 8px;
+  right: 15px;
+}
+#container_icon > input{
+  padding-right: 5px;
 }

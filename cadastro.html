@@ -26,6 +26,8 @@
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
@@ -45,7 +47,9 @@
 
       <div class="section-title">
         <h2>Cadastro</h2>
-        <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+        <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint
+          consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit
+          in iste officiis commodi quidem hic quas.</p>
       </div>
 
       <div class="row">
@@ -67,7 +71,7 @@
           </div> -->
 
         <div class="container">
-          <form novalidate="false" id="formEtapa" method="POST">
+          <form novalidate="false" id="formEtapa">
             <!--Etapa 1-->
             <div class="form-group" id="etapa1">
               <div class="row g-3">
@@ -75,41 +79,46 @@
                 <div class="col-md-4">
 
                   <label class="form-label" for="nome">*Nome Completo</label>
-                  <input type="text" class="form-control custom-border" id="nome" required>
+                  <input type="text" class="form-control" id="nome" name="nomeCompleto" required>
                 </div>
                 <!--CPF-->
                 <div class="col-md-2">
                   <label class="form-label" for="cpf">*CPF</label>
-                  <input type="text" class="form-control custom-border" id="cpf" placeholder="000.000.000-00" required>
+                  <input type="text" class="form-control" id="cpf" placeholder="000.000.000-00" required>
                 </div>
                 <!--Data Nascimento-->
                 <div class="col-md-3">
                   <label class="form-label" for="data_nasc">*Data de Nascimento</label>
-                  <input type="text" class="form-control custom-border centered" id="dataNascimento" placeholder="____/____/____" required>
+                  <input type="text" class="form-control centered" id="dataNascimento" placeholder="____/____/____" required>
                 </div>
                 <!--Sexo-->
                 <div class="col-md-2">
                   <label class="form-label" for="sexo">*Sexo</label>
                   <select class="form-select" id="sexo" required>
-                    <option selected value="F">FEMENINO</option>
-                    <option value="M">MASCULINO</option>
+                    <option selected value="F">
+                      FEMENINO
+                    </option>
+
+                    <option value="M">
+                      MASCULINO
+                    </option>
                   </select>
                 </div>
                 <!--Nome Mae-->
                 <div class="col-md-4">
-                  <label class="form-label" for="nome_mae">*Nome da Mãe</label>
-                  <input type="text" class="form-control custom-border" id="nome_mae" required>
+                  <label class="form-label" for="nomeMae">*Nome da Mãe</label>
+                  <input type="text" class="form-control" id="nomeMae" required>
                 </div>
                 <!--Telefone-->
                 <div class="col-md-2">
-                  <label class="form-label" for="tel">*Telefone</label>
-                  <input type="text" class="form-control custom-border" id="tel" placeholder="(DD)900-0000" required>
+                  <label class="form-label" for="telefone">*Telefone</label>
+                  <input type="text" class="form-control" id="telefone" placeholder="(DD)900-0000" required>
                 </div>
                 <div class="col-1"></div>
                 <!--Tipo Sanguineo Dropdown-->
                 <div class="col-md-2">
-                  <label class="form-label" for="tp_sangue">*Tipo Sanguíneo</label>
-                  <select class="form-select" id="tp_sangue" required>
+                  <label class="form-label" for="tipoSanguineo">*Tipo Sanguíneo</label>
+                  <select class="form-select" id="tipoSanguineo" required>
                     <option value="A">A</option>
                     <option value="B">B</option>
                     <option value="AB">AB</option>
@@ -119,7 +128,7 @@
                 <!--Fator RH Dropdown-->
                 <div class="col-md-2">
                   <label class="form-label" for="ft_rh">*Fator RH</label>
-                  <select class="form-select custom-border" id="fatorRH" required>
+                  <select class="form-select" id="fatorRH" required>
                     <option value="POSITIVO">POSITIVO</option>
                     <option value="NEGATIVO">NEGATIVO</option>
                   </select>
@@ -128,11 +137,14 @@
                 <!--Email e senha-->
                 <div class="col-md-4">
                   <label for="email" class="form-label">Email</label>
-                  <input type="email" class="form-control custom-border" id="email" required>
+                  <input type="email" class="form-control" id="email" required>
                 </div>
                 <div class="col-md-2">
                   <label for="senha" class="form-label">Senha</label>
-                  <input type="password" class="form-control custom-border" id="senha" min="8" max="16" required>
+                  <div id="container_icon">
+                    <input type="password" class="form-control " id="senha" min="8" max="16" required>
+                    <i class="bi bi-eye olho" onclick="mouseoverPass();" onmouseout="mouseoutPass();" id="olho"></i>
+                  </div>
                 </div>
               </div>
               <button type="button" class="btn btn-primary mt-3" onclick="proximaEtapa(2)">Próxima</button>
@@ -143,7 +155,7 @@
                 <!--CEP-->
                 <div class="col-md-4">
                   <label for="cep" class="form-label">*Cep</label>
-                  <input type="text" class="form-control" id="cep" required>
+                  <input type="text" class="form-control" id="cep" pattern="^[0-9]+$" title="Digite apenas números de 0 a 9" oninput="buscarCep(this)" minlength="8" maxlength="8" required>
                 </div>
                 <!--Endereco-->
                 <div class="col-md-4">
@@ -152,18 +164,18 @@
                 </div>
                 <!--Número-->
                 <div class="col-md-4">
-                  <label for="num_endereco" class="form-label">*Número</label>
-                  <input type="number" class="form-control" id="num_endereco" required>
+                  <label for="numero" class="form-label">*Número</label>
+                  <input type="text" class="form-control" id="numero" placeholder="Digite números ou 'SN'" required>
                 </div>
                 <!--Estado-->
                 <div class="col-md-1">
-                  <label for="estado" class="form-label">*Estado</label>
-                  <input type="text" class="form-control" id="estado" required>
+                  <label for="uf" class="form-label">*Estado</label>
+                  <input type="text" class="form-control" id="uf" required>
                 </div>
                 <!--Cidade-->
                 <div class="col-md-2">
-                  <label for="cidade" class="form-label">*Cidade</label>
-                  <input type="text" class="form-control" id="cidade" required>
+                  <label for="localidade" class="form-label">*Cidade</label>
+                  <input type="text" class="form-control" id="localidade" required>
                 </div>
                 <!--Bairro-->
                 <div class="col-md-4">
@@ -177,7 +189,7 @@
                 </div>
               </div>
               <button type="button" class="btn btn-secondary mt-5" onclick="etapaAnterior(1)">Anterior</button>
-              <button type="submit" class="btn btn-success mt-5 ms-4" onclick="validarUltimaEtapa()">Enviar</button>
+              <button type="button" class="btn btn-success mt-5 ms-4" onclick="validarUltimaEtapa()">Enviar</button>
             </div>
 
         </div>
@@ -199,12 +211,48 @@
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+
   <!--Etapas Formulario-->
   <script>
-    $('.dropdown-toggle').dropdown()
+    const formEl = document.getElementById('formEtapa');
+
+    $('.dropdown-toggle').dropdown();
     let etapaAtual = 1;
+
+    // PREENHER DADOS
+    (() => {
+      const modelo = {
+        "nome": "Nome Teste 3",
+        "cpf": "123.652.506-02",
+        "dataNascimento": "12-04-1998",
+        "sexo": "F",
+        "nomeMae": "Nome da mãe",
+        "telefone": "(98) 98456-1245",
+        "tipoSanguineo": "A",
+        "fatorRH": "POSITIVO",
+        "email": "email3@fake-gmail.com",
+        "senha": "12345678"
+        //   "cep": "01001000",
+        //   "endereco": "Rua 1",
+        //   "numero": "13",
+        //   "uf": "MA",
+        //   "localidade": "Ciade",
+        //   "bairro": "Bairro 1",
+        //   "complemento": "Casa"
+      };
+
+      Object.entries(modelo).forEach(([key, value]) => {
+        if (formEl.elements[key]) {
+          formEl.elements[key].value = value;
+        }
+      });
+    }
+    )();
 
     function proximaEtapa(etapa) {
       const camposValidos = validarCamposEtapa(etapaAtual);
@@ -227,7 +275,7 @@
       const camposEtapa = document.querySelectorAll(`#etapa${etapa} input[required]`);
 
       for (const campo of camposEtapa) {
-        if (campo.value === "") {
+        if (!campo.value) {
           return false;
         }
       }
@@ -235,58 +283,97 @@
       return true;
     }
 
-    function enviarRelatorio() {
+    async function enviarRelatorio() {
       // Recolha os dados do formulário ou crie um objeto de dados do relatório
-      const data = {
-        "cpf": document.querySelector("#cpf").value,
-        "dataNascimento": document.querySelector("#dataNascimento").value,
-        "email": document.querySelector("#email").value,
-        "endereco": {
-          "bairro": document.querySelector("#bairro").value,
-          "cep": document.querySelector("#cep").value,
-          "complemento": document.querySelector("#complemento").value,
-          "localidade": document.querySelector("#cidade").value,
-          "numero": document.querySelector("#num_endereco").value,
-          "uf": document.querySelector("#estado").value
-        },
-        "fatorRH": document.querySelector("#fatorRH").value,
-        "nome": document.querySelector("#nome").value,
-        "nomeMae": document.querySelector("#nome_mae").value,
-        "senha": document.querySelector("#senha").value,
-        "sexo": document.querySelector("#sexo").value,
-        "telefone": document.querySelector("#tel").value,
-        "tipoSanguineo": document.querySelector("#tp_sangue").value
+      const body = {};
+      Array.from(formEl.elements).forEach(element => {
+        if (element?.id && element?.value) {
+          body[element.id] = element.value;
+        }
+      });
 
-      };
-      console.log(data)
-      //Faça a solicitação POST usando o Axios
-      const config = {
+      await fetch('http://26.49.188.195:8080/usuarios', {
+        method: 'POST',
+        body: JSON.stringify(body),
         headers: {
-          'Content-Type': 'application/json', // Especifique o tipo de conteúdo
-          // Você pode adicionar outros cabeçalhos se necessário
-        },
-      };
-      axios.post('http://26.49.188.195:8080/usuarios', data, config)
-        .then(function (response) {
-          alert("Relatório enviado com sucesso!");
+          "Content-Type": "application/json"
+        }
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Erro', { cause: response.json() });
+          }
+          return response.json();
         })
-        .catch(function (error) {
-          alert("Ocorreu um erro ao enviar o relatório.");
+        .then(data => {
+          showMessage({
+            text: "Relatório enviado com sucesso!",
+            className: "success-toast",
+
+            // REDIRECIONAR PARA INDEX
+            onClick: function () {
+              const a = document.createElement('a');
+              a.href = "./login.html";
+              a.click();
+            }
+          });
+        })
+        .catch((e) => {
+          e.cause.then((data) => {
+            showMessage({
+              text: data?.mensagem || data?.message || data?.titulo || 'Sistema indisponível no momento. Por favor, tente mais tarde.',
+              className: "error-toast",
+            });
+          });
         });
 
     }
 
     function validarUltimaEtapa() {
       const camposValidos = validarCamposEtapa(etapaAtual);
-
       if (!camposValidos) {
         alert("Preencha todos os campos obrigatórios na última etapa.");
-      } else {
-        alert('enviando relatorio');
-        enviarRelatorio();
+        return;
       }
+
+      //alert('enviando relatorio');
+      enviarRelatorio();
     }
+
+    const showMessage = (options) => {
+      Toastify({
+        duration: 30_000,
+        close: true,
+        gravity: "top",
+        position: "right",
+        stopOnFocus: true,
+        ...options
+      }).showToast();
+    } 
   </script>
+
+  <!--Via CEP-->
+  <script>
+    function buscarCep(input) {
+      input.value = input.value.replace(/[^0-9]/g, "");
+      if (input.value.length == 8) {
+
+        var url = 'https://viacep.com.br/ws/' + input.value + '/json/';
+
+        $.ajax({
+          url: url,
+          dataType: 'json',
+          success: function (data) {
+            $('#endereco').val(data.logradouro);
+            $('#bairro').val(data.bairro);
+            $('#localidade').val(data.localidade);
+            $('#uf').val(data.uf);
+          }
+        });
+      };
+    };
+  </script>
+
   <!--Máscaras Input-->
   <script>
     $(document).ready(function () {
@@ -300,6 +387,18 @@
     $(document).ready(function () {
       $('#tel').mask('(00)000-0000');
     });
+  </script>
+
+  <!--Icone Senha-->
+  <script>
+    function mouseoverPass(obj) {
+      var obj = document.getElementById('senha');
+      obj.type = "text";
+    }
+    function mouseoutPass(obj) {
+      var obj = document.getElementById('senha');
+      obj.type = "password";
+    }
   </script>
 
 </body>
