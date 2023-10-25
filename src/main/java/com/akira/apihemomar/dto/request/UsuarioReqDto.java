@@ -46,7 +46,7 @@ public class UsuarioReqDto {
     @NotNull(message = "O fator RH não pode vazio ou nulo!")
     private FATORRH fatorRH;
     @NotBlank(message = "O Cep não pode ser vazio ou nulo !")
-   // @Size(max = 9, message = "O Cep deverá conter no máximo 9 caracteres !")
+    @Size(max = 8, message = "O Cep deverá conter no máximo 8 caracteres !")
     private String cep;
     @NotBlank(message = "O Bairro não pode ser vazio ou nulo !")
     @Size(max = 100, message = "O Bairro deverá conter no máximo 100 caracteres !")
@@ -187,6 +187,10 @@ public class UsuarioReqDto {
     public void UPPERCASE(){
         this.nome=this.nome.toUpperCase();
         this.nomeMae=Objects.isNull(this.nomeMae)?this.nomeMae:this.nomeMae.toUpperCase();
+        this.bairro=this.bairro.toUpperCase();
+        this.complemento= Objects.isNull(this.complemento)?this.complemento:this.complemento.toUpperCase();
+        this.localidade=this.localidade.toUpperCase();
+        this.uf=this.uf.toUpperCase();
 
 
     }
