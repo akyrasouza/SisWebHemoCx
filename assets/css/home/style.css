@@ -1,0 +1,141 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  background-color: aqua;
+}
+
+.sidebar {
+  width: auto;
+  background-color: #333;
+  color: #fff;
+  position: fixed;
+  height: 100%;
+  transition: width 0.3s;
+  overflow-y: auto;
+}
+
+.sidebar.collapsed {
+  width: auto;
+}
+
+.sidebar-toggle {
+  display: block;
+  padding: 10px;
+}
+
+.sidebar-header {
+  display: none;
+}
+
+.sidebar-icons {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sidebar-icons.visible {
+  display: block;
+}
+
+.content {
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+  background-color: #fff;
+  display: flex; /* Adicione display flex */
+  margin-left: 40px;
+}
+
+.menu-item {
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.menu-item:hover {
+  background-color: #555;
+}
+
+.menu-item.active-item {
+  background-color: #555;
+}
+
+.content-section {
+  display: none;
+  flex-grow: 1; /* Adicione flex-grow 1 para preencher a altura disponível */
+}
+
+.content-section.active {
+  display: block;
+}
+
+iframe {
+  border: none;
+}
+
+.content-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Adicione uma media query para telas pequenas */
+@media (max-width: 768px) {
+  .sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #555;
+  }
+
+  .sidebar-icons {
+    display: none;
+  }
+
+  .sidebar-toggle {
+    display: block;
+  }
+}
+.user-icon {
+  position: absolute;
+  top: 10px;
+  right: 40px;
+}
+
+/* Estilos para o ícone do usuário */
+.user-icon i {
+  font-size: 24px;
+  color: #333;
+}
+
+/* Estilos para o texto "usuário" */
+.user-icon span {
+  font-size: 16px;
+  color: #333;
+  max-width: 120px; /* Ajuste a largura máxima conforme necessário */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Estilos para o texto do usuário à esquerda do ícone */
+.user-icon:hover::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 32px; /* Ajuste a posição à direita conforme necessário */
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: #333;
+}

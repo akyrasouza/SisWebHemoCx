@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Medilab Bootstrap Template - Index</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+ 
+
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+  <!-- Template Main CSS File -->
+  <link href="../assets/css/cadastro/cadastro.css" rel="stylesheet" type="text/css">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+  
+</head>
+
+<body>
+  <!-- ======= Cadastro Section ======= -->
+  <section id="cadastro" class="cadastro">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Cadastro</h2>        
+      </div>
+
+      <div class="row">    
+
+        <div class="container">
+          <form novalidate="false" id="formEtapa" method="POST">
+            <!--Etapa 1-->
+            <div class="form-group" id="etapa1">
+              <div class="row g-3">
+                <!--Nome-->
+                <div class="col-md-4">
+
+                  <label class="form-label" for="nome">*Nome Completo</label>
+                  <input type="text" class="form-control" id="nome" name="nomeCompleto" required>
+                </div>
+                <!--CPF-->
+                <div class="col-md-2">
+                  <label class="form-label" for="cpf">*CPF</label>
+                  <input type="text" class="form-control" id="cpf" placeholder="000.000.000-00" required>
+                </div>
+                <!--Data Nascimento-->
+                <div class="col-md-3">
+                  <label class="form-label" for="data_nasc">*Data de Nascimento</label>
+                  <input type="text" class="form-control centered" id="dataNascimento" placeholder="____/____/____" required>
+                </div>
+                <!--Sexo-->
+                <div class="col-md-2">
+                  <label class="form-label" for="sexo">*Sexo</label>
+                  <select class="form-select" id="sexo" required>
+                    <option selected value="F">
+                      FEMENINO
+                    </option>
+
+                    <option value="M">
+                      MASCULINO
+                    </option>
+                  </select>
+                </div>
+                <!--Nome Mae-->
+                <div class="col-md-4">
+                  <label class="form-label" for="nomeMae">*Nome da Mãe</label>
+                  <input type="text" class="form-control" id="nomeMae" required>
+                </div>
+                <!--Telefone-->
+                <div class="col-md-2">
+                  <label class="form-label" for="telefone">*Telefone</label>
+                  <input type="text" class="form-control" id="telefone" placeholder="(DD)900-0000" required>
+                </div>
+                <div class="col-1"></div>
+                <!--Tipo Sanguineo Dropdown-->
+                <div class="col-md-2">
+                  <label class="form-label" for="tipoSanguineo">*Tipo Sanguíneo</label>
+                  <select class="form-select" id="tipoSanguineo" required>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="AB">AB</option>
+                    <option value="O">O</option>
+                  </select>
+                </div>
+                <!--Fator RH Dropdown-->
+                <div class="col-md-2">
+                  <label class="form-label" for="ft_rh">*Fator RH</label>
+                  <select class="form-select" id="fatorRH" required>
+                    <option value="POSITIVO">POSITIVO</option>
+                    <option value="NEGATIVO">NEGATIVO</option>
+                  </select>
+                </div>
+
+                <!--Email e senha-->
+                <div class="col-md-4">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="email" required>
+                </div>
+                <div class="col-md-2">
+                  <label for="senha" class="form-label">Senha</label>
+                  <div id="container_icon">
+                    <input type="password" class="form-control " id="senha" min="8" max="16" required>
+                    <i class="bi bi-eye olho" onclick="mouseoverPass();" onmouseout="mouseoutPass();" id="olho"></i>
+                  </div>
+                </div>
+              </div>
+              <button type="button" class="btn btn-primary mt-3" onclick="proximaEtapa(2)">Próxima</button>
+            </div>
+            <!--Etapa 2-->
+            <div class="form-group" id="etapa2" style="display: none;">
+              <div class="row g-3">
+                <!--CEP-->
+                <div class="col-md-4">
+                  <label for="cep" class="form-label">*Cep</label>
+                  <input type="text" class="form-control" id="cep" pattern="^[0-9]+$" title="Digite apenas números de 0 a 9" oninput="buscarCep(this)" minlength="8" maxlength="8" required>
+                </div>
+                <!--Endereco-->
+                <div class="col-md-4">
+                  <label for="endereco" class="form-label">*Endereço</label>
+                  <input type="text" class="form-control" id="endereco" required>
+                </div>
+                <!--Número-->
+                <div class="col-md-4">
+                  <label for="numero" class="form-label">*Número</label>
+                  <input type="text" class="form-control" id="numero" placeholder="Digite números ou 'SN'" required>
+                </div>
+                <!--Estado-->
+                <div class="col-md-1">
+                  <label for="uf" class="form-label">*Estado</label>
+                  <input type="text" class="form-control" id="uf" required>
+                </div>
+                <!--Cidade-->
+                <div class="col-md-2">
+                  <label for="localidade" class="form-label">*Cidade</label>
+                  <input type="text" class="form-control" id="localidade" required>
+                </div>
+                <!--Bairro-->
+                <div class="col-md-4">
+                  <label for="bairro" class="form-label">*Bairro</label>
+                  <input type="text" class="form-control" id="bairro" required>
+                </div>
+                <!--Complemento-->
+                <div class="col-md-4">
+                  <label for="complemento" class="form-label">Complemento</label>
+                  <input type="text" class="form-control" id="complemento">
+                </div>
+              </div>
+              <button type="button" class="btn btn-secondary mt-5" onclick="etapaAnterior(1)">Anterior</button>
+              <button type="button" class="btn btn-success mt-5 ms-4" onclick="validarUltimaEtapa()">Enviar</button>
+            </div>
+
+        </div>
+        </form>
+      </div>
+    </div>
+    </div>
+  </section><!-- End Doctors Section -->
+  <!-- Vendor JS Files -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  <script src="../assets/js/cadastro/cadastro.js"></script> 
+  <script src="../assets/js/cadastro/cep.js"></script> 
+  <script src="../assets/js/cadastro/mascaras.js"></script> 
+  <script src="../assets/js/cadastro/iconeSenha.js"></script> 
+
+</body>
+
+</html>
