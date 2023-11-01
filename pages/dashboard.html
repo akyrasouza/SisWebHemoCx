@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+
+    <!-- Inclua o Bootstrap 5 JavaScript (caso necessário) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+  </head>
+
+  <body>
+    <div class="m-2">
+      <h1 class="text-center">Doações agendadas</h1>
+      <br /><br />
+
+      <button
+        type="button"
+        class="btn btn-primary"
+        data-toggle="modal"
+        data-target="#modalBusca"
+      >
+        Filtro
+      </button>
+      <br /><br />
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">data do cadastro</th>
+              <th scope="col">data agendada</th>
+              <th scope="col">nome</th>
+              <th scope="col">hora</th>
+              <th scope="col">dia</th>
+              <th scope="col">observação</th>
+              <th scope="col">status</th>
+              <th scope="col">ações</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Modal de Busca -->
+    <div
+      class="modal fade"
+      id="modalBusca"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="modalBuscaLabel"
+      aria-hidden="true"
+      data-backdrop="static"
+      data-keyboard="false"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalBuscaLabel">
+              Buscar por critérios
+            </h5>
+          </div>
+          <form id="formAgenda">           
+            <div class="modal-body">
+              <div class="form-group">
+                <label for="dataInicio">Data inicio:</label>
+                <input
+                  type="date"
+                  id="dataInicio"
+                  name="dataInicio"
+                  class="form-control"
+                />
+              </div>
+              <div class="form-group">
+                <label for="dataFim">Data Fim:</label>
+                <input
+                  type="date"
+                  id="dataFim"
+                  name="dataFim"
+                  class="form-control"
+                />
+              </div>
+              <div class="form-group">
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" class="form-control" />
+              </div>
+              <div class="form-group">
+                <label for="dia">Dia:</label>
+                <select id="dia" name="dia" class="form-control">
+                  <option value=""></option>
+                  <option value="SEGUNDA">SEG</option>
+                  <option value="TERÇA">TER</option>
+                  <option value="QUARTA">QUA</option>
+                  <option value="QUARTA">QUI</option>
+                  <option value="QUARTA">SEX</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="hora">Hora:</label>
+                <select id="hora" name="hora" class="form-control"></select>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Fechar
+              </button>
+              <button
+                type="button"               
+                 class="btn btn-primary"
+                onclick="buscarPorData()"
+              >
+                Pesquisar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+   <!--modal alterar -->
+  
+   <div
+  class="modal fade"
+  id="modalAlterar"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="modalAlterarLabel"
+  aria-hidden="true"
+  data-backdrop="static"
+  data-keyboard="false"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalAlterarLabel">
+          Aterar Status
+        </h5>
+      </div>
+      <form id="formAlteracao">
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="dia">Status:</label>
+            <select id="dia" name="dia" class="form-control">
+              <option value=""></option>
+              <option value="EM ANALISE">EM ANALISE</option>
+              <option value="CONFIRMADO">CONFIRMADO</option>
+              <option value="SEM VAGA">SEM VAGA</option>
+              <option value="AGUARDANDO">AGUARDANDO</option>
+              <option value="NEGADO">NEGADO</option>
+              <option value="CONCLUIDO">CONCLUIDO</option>
+            </select>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Fechar
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              onclick="alterarStatus()"
+            >
+              Alterar
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+   <!-- -->
+   <script src="../assets/js/dashboard/alterarStatus.js"></script>   
+    <script src="../assets/js/dashboard/horarios.js"></script>
+    <script src="../assets/js/dashboard/buscarPorData.js"></script>
+    <script src="../assets/js/dashboard/popularTabela.js"></script>
+    <script src="../assets/js/dashboard/modal.js"></script>
+  </body>
+</html>

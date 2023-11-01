@@ -28,7 +28,9 @@ function adicionarItensAoMenu() {
 const itemIcons = {
     'doacao': 'fa-user',
     'informacoes': 'fa-info-circle',
-    'configuracoes': 'fa-cog',
+    'dashboard':'fa fa-dashboard',
+    'configuracoes': 'fa-cog'
+    
 };
 
 const userData = JSON.parse(localStorage.getItem('userData'));
