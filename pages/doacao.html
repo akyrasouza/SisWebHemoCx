@@ -1,11 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Doação</title>
+  <title>Lista de Horas e Dias</title>
 </head>
+
 <body>
-  <h1>Doação</h1>
+
+  <h2>Lista de Horas e Dias:</h2>
+  <form id="formDoacao">
+    <div>
+      <h1>Informe uma Data:</h1>
+      <input type="date" id="dataDoacao">
+      <button type="button" onclick="gerarLista()">Buscar Horários</button>
+    </div>
+    <div>
+      <select id="horario" class="form-select" multiple aria-label="multiple select example">
+      </select><br>
+    </div>
+    <div>
+      <label for="obs">Coloque uma observação</label><br>
+      <input type="text" id="observacao"><br>
+    </div>
+    <button type="button" onclick="agendarDoacao()">Enviar</button>
+  </form>
+
+  <script src="../assets/js/doacao/doacao.js">
+  </script>
 </body>
+
 </html>

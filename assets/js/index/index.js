@@ -34,8 +34,7 @@ const itemIcons = {
 const userData = JSON.parse(localStorage.getItem('userData'));
 var items=[]
 if (userData) {    
-    const userName = userData.nome;
-    const userCPF = userData.cpf;   
+    const userName = userData.nome; 
     items = userData.itensMenu;    
     const userSpan = document.getElementById("user-name");
     userSpan.textContent = userName;
