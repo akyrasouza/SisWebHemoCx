@@ -2,7 +2,7 @@ function popularTabela(dados) {
     var tableBody = document.querySelector(".table tbody");
     tableBody.innerHTML = ""; 
 
-    dados.forEach(function (item) {
+    dados.forEach(function (item) {      
       var row = tableBody.insertRow(-1);
       var dataCadastroCell = row.insertCell(0);
       var dataAgendadaCell = row.insertCell(1);
@@ -20,6 +20,6 @@ function popularTabela(dados) {
       diaCell.textContent = item.diaSemana;
       observacaoCell.textContent = item.observacao;
       statusCell.textContent = item.status;
-      acoesCell.innerHTML = '<button type="button" class="btn btn-warning" onclick="modal()">Alterar</button>';
+      acoesCell.innerHTML = `<button type="button" class="btn btn-warning" onclick="modal(id=${item.doacaoId})">Alterar</button>`;
     });
   }
