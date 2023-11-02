@@ -1,5 +1,4 @@
 function formataData( ){
-  alert("teste")
   $(document).ready(function () {
     $('#dataDoacao').mask('dd-mm-yyyy');
   });
