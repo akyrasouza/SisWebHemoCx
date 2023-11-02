@@ -1,19 +1,7 @@
-function formataData( ){
-  $(document).ready(function () {
-    $('#dataDoacao').mask('dd-mm-yyyy');
-  });
-}
 
 async function gerarLista() {
-  var inputData = document.getElementById('dataDoacao').value;
-  var data = new Date(inputData);
-
-  // Aqui você pode adicionar a lógica para gerar a lista de acordo com a data
-   // Obtém a data atual
-  const dataAtual = new Date();
-// Formata a data no formato "dd-mm-yyyy"
- const dataFormatada = formatarData(dataAtual);
-  var lista_horarios= await buscarHorarios(dataFormatada);
+  var data = document.getElementById('dataDoacao').value;
+  var lista_horarios= await buscarHorarios(data);
   var select = document.getElementById("horario");
   lista_horarios.forEach(function (horario) {
   var option = document.createElement("option");
@@ -23,7 +11,7 @@ async function gerarLista() {
 });
 }
 
-function agendarDoacao() {
+async function agendarDoacao() {
   const userData = JSON.parse(localStorage.getItem('userData'));
   const formEl = document.getElementById('formDoacao');
     
@@ -35,14 +23,5 @@ function agendarDoacao() {
   }); 
   body["tipoDoacao"] = 1;  
   body["usuario"] = userData.id;
-  // var objeto = {
-  //   "dataDoacao": "string",
-  //   "horario": 0,
-  //   "observacao": "string",
-  //   "tipoDoacao": 1,
-  //   "usuario": 1
-  // };
-
-  console.log(body); // Exibe o objeto preenchido no console (para fins de demonstração)
+  await enviarDoacao(body);
 }
-formataData();

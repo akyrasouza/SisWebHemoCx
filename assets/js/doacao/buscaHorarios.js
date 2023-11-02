@@ -1,4 +1,5 @@
 async function buscarHorarios(data){  
+  console.log(data)
     const filtro= await fetch(`http://26.49.188.195:8080/horarios?data=${data}`, {
          method: 'GET',    
          headers: {
