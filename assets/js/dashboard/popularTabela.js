@@ -1,6 +1,6 @@
 function popularTabela(dados) {    
-    var tableBody = document.querySelector(".table tbody");
-    tableBody.innerHTML = ""; 
+    var tableBody = document.querySelector("#tabeladoacoes tbody");
+    tableBody.innerHTML = "";     
 
     dados.forEach(function (item) {      
       var row = tableBody.insertRow(-1);

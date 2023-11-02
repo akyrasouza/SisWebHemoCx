@@ -17,9 +17,8 @@ async function login() {
       }
     })
       .then((response) => {        
-        if (!response.ok) {
-         
-          throw new Error('Erro ' + response.status + ': ' + response.statusText);
+        if (!response.ok) {         
+         throw new Error('Erro', { cause: response.json() });
         }      
       
         return response.json();

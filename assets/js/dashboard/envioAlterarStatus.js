@@ -5,8 +5,13 @@ async function envioAlterarStatus(doacao,status){
     headers: {
       "Content-Type": "application/json"
     }
-  })      
-    .catch((e) => {
+  })   
+  .then((response) => {        
+    if (!response.ok) {         
+     throw new Error('Erro', { cause: response.json() });
+    }      
+  })
+  .catch((e) => {
       e.cause.then((data) => {        
         showMessage({
           text: data?.mensagem || data?.message || data?.titulo || 'Sistema indisponível no momento. Por favor, tente mais tarde.',
@@ -14,8 +19,18 @@ async function envioAlterarStatus(doacao,status){
         });
       });
 }); 
-
 }
+const showMessage = (options) => {
+  Toastify({
+    duration: 5_000,
+    close: true,
+    gravity: "top",
+    position: "right",
+    stopOnFocus: true,
+    ...options
+  }).showToast();
+};
+
 
    
 
