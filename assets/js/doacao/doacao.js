@@ -1,3 +1,10 @@
+function formataData( ){
+  alert("teste")
+  $(document).ready(function () {
+    $('#dataDoacao').mask('dd-mm-yyyy');
+  });
+}
+
 function gerarLista() {
   var inputData = document.getElementById('dataDoacao').value;
   var data = new Date(inputData);
@@ -74,13 +81,14 @@ function agendarDoacao() {
   }); 
   body["tipoDoacao"] = 1;  
   body["usuario"] = userData.id;
-  var objeto = {
-    "dataDoacao": "string",
-    "horario": 0,
-    "observacao": "string",
-    "tipoDoacao": 1,
-    "usuario": 1
-  };
+  // var objeto = {
+  //   "dataDoacao": "string",
+  //   "horario": 0,
+  //   "observacao": "string",
+  //   "tipoDoacao": 1,
+  //   "usuario": 1
+  // };
 
   console.log(body); // Exibe o objeto preenchido no console (para fins de demonstração)
 }
+formataData();
