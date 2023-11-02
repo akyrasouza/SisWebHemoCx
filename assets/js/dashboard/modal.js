@@ -17,8 +17,8 @@ $(document).ready(function () {
  
   $('#modalAlterar').modal({ backdrop: 'static', keyboard: false });
 });
-function modal(){
-  console.log("deu certo porra!")
-  $('#modalAlterar').modal("show");
-}
+function modal(id){   
+  localStorage.setItem('modalAlterar',id); 
+  $('#modalAlterar').modal("show"); 
+ }
 
