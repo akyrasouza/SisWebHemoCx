@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 function formataData( ){
   alert("teste")
   $(document).ready(function () {
@@ -6,10 +5,7 @@ function formataData( ){
   });
 }
 
-function gerarLista() {
-=======
 async function gerarLista() {
->>>>>>> 1b038e82fe1da2c34a851bf586f312f148634ee0
   var inputData = document.getElementById('dataDoacao').value;
   var data = new Date(inputData);
 
@@ -50,15 +46,4 @@ function agendarDoacao() {
 
   console.log(body); // Exibe o objeto preenchido no console (para fins de demonstração)
 }
-<<<<<<< HEAD
 formataData();
-=======
-//retirar quando a data estiver no formato correto
-function formatarData(data) {
-  const dia = data.getDate().toString().padStart(2, '0');
-  const mes = (data.getMonth() + 1).toString().padStart(2, '0');
-  const ano = data.getFullYear().toString();
-
-  return dia + '-' + mes + '-' + ano;
-}
->>>>>>> 1b038e82fe1da2c34a851bf586f312f148634ee0
