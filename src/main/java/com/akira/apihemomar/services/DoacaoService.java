@@ -33,17 +33,23 @@ public class DoacaoService {
     @Autowired
     private HistoricoDoacaoService  historicoDoacaoService;
     @Transactional
+    public void atualizarDoacao(Long doacaoId, Long status) {
+     HistoricoDoacao historicoDoacao=historicoDoacaoService.buscarDoacaoAtiva(doacaoId);
+     cadastarHistoricoDoacao(historicoDoacao.getDoacao(),status);
+     historicoDoacaoService.desativarHistoricoDoacao(historicoDoacao);
+    }
+    @Transactional
     public void cadastrarDoacao(DoacaoReqDto  doacaoReqDto){
         //todo:analisar cadastro para o mesmo dia
         validarCadastroDoacao(doacaoReqDto);
         Doacao doacao=converterDtoEmDoacao(doacaoReqDto);
         doacao= doacaoRepository.save(doacao);
-        cadastarHistoricoDoacao(doacao);
+        cadastarHistoricoDoacao(doacao,1L);
 
     }
 
-    private void cadastarHistoricoDoacao(Doacao doacao) {
-        historicoDoacaoService.cadastrarHistoricoDoacao(doacao);
+    private void cadastarHistoricoDoacao(Doacao doacao,Long status) {
+        historicoDoacaoService.cadastrarHistoricoDoacao(doacao,status);
     }
 
     private Doacao converterDtoEmDoacao(DoacaoReqDto doacaoReqDto) {
@@ -54,6 +60,7 @@ public class DoacaoService {
         return doacao;
 
     }
+
 
     private void validarCadastroDoacao(DoacaoReqDto doacaoReqDto) {
         //todo:trocar exception
@@ -69,4 +76,6 @@ public class DoacaoService {
             throw new RuntimeException(e);
         }
     }
+
+
 }

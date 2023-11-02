@@ -1,7 +1,9 @@
 package com.akira.apihemomar.controllers;
 
 
+import com.akira.apihemomar.dto.request.LoginReqDto;
 import com.akira.apihemomar.dto.request.UsuarioReqDto;
+import com.akira.apihemomar.dto.response.LoginUsuarioRespDto;
 import com.akira.apihemomar.dto.response.UsuarioRespDto;
 import com.akira.apihemomar.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,11 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioService   usuarioService;
+
+    @PostMapping("/login")
+    public  ResponseEntity<LoginUsuarioRespDto> loginUsuario(@RequestBody LoginReqDto loginReqDto){
+        return ResponseEntity.status(HttpStatus.OK).body(usuarioService.loginUsuario(loginReqDto));
+    }
 
     @PostMapping
     public ResponseEntity<UsuarioRespDto> cadastrarUsuario(@RequestBody @Valid UsuarioReqDto usuarioReqDto){

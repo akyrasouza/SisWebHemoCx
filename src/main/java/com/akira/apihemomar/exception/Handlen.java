@@ -22,6 +22,15 @@ public class Handlen {
         erro.setTimestamp(System.currentTimeMillis());
         return ResponseEntity.status(HttpStatus.CONFLICT).body(erro);
     }
+    @ExceptionHandler(NotFoundException.class)
+    public ResponseEntity<DetalhesErro> handlenNotFoundExceptionException(NotFoundException e) {
+        DetalhesErro erro = new DetalhesErro();
+        erro.setTitulo("Objeto não encontrado!");
+        erro.setMensagem(e.getMessage());
+        erro.setStatus(404L);
+        erro.setTimestamp(System.currentTimeMillis());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(erro);
+    }
 
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<DetalhesErro> argumentoException(IllegalArgumentException ex){

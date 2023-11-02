@@ -6,10 +6,7 @@ import com.akira.apihemomar.services.DoacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -25,5 +22,11 @@ public class DoacaoController {
     public ResponseEntity<Void> cadastrarDoacao(@RequestBody @Valid DoacaoReqDto doacaoReqDto){
         doacaoService.cadastrarDoacao(doacaoReqDto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+    @PutMapping("/{doacaoId}/status/{statusId}")
+    public ResponseEntity<Void> atualizarDoacao(@PathVariable("doacaoId") Long doacaoId,
+                                                @PathVariable("statusId") Long status){
+        doacaoService.atualizarDoacao(doacaoId,status);
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 }

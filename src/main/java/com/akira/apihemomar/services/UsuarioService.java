@@ -1,7 +1,9 @@
 package com.akira.apihemomar.services;
 
 
+import com.akira.apihemomar.dto.request.LoginReqDto;
 import com.akira.apihemomar.dto.request.UsuarioReqDto;
+import com.akira.apihemomar.dto.response.LoginUsuarioRespDto;
 import com.akira.apihemomar.dto.response.UsuarioRespDto;
 import com.akira.apihemomar.exception.ConflitoException;
 import com.akira.apihemomar.exception.NotFoundException;
@@ -49,9 +51,25 @@ public class UsuarioService {
         return converterUsuarioEmDto(usuario);
 
     }
+    public LoginUsuarioRespDto loginUsuario(LoginReqDto loginReqDto) {
+        Usuario usuario=usuarioRepository.findByLogin(loginReqDto.getUsuario())
+                .orElseThrow(()->new NotFoundException("Login  não encontrado!"));
+        if(!usuario.getSenha().equals(Criptografia.md5(loginReqDto.getSenha()))){
+            throw new NotFoundException("Login  não encontrado!");
+        }
+        return converterUsuarioEmDtoLogin(usuario);
+    }
 
     private UsuarioRespDto converterUsuarioEmDto(Usuario usuario) {
         return modelMapper.map(usuario, UsuarioRespDto.class);
+    }
+    private LoginUsuarioRespDto converterUsuarioEmDtoLogin(Usuario usuario) {
+        LoginUsuarioRespDto loginDto = modelMapper.map(usuario, LoginUsuarioRespDto.class);
+        loginDto.getItensMenu().add("informacoes");
+        loginDto.getItensMenu().add("doacao");
+        loginDto.getItensMenu().add("dashboard");
+        loginDto.getItensMenu().add("configuracoes");
+        return loginDto;
     }
 
     private Usuario converterDtoEmCadastroUsuario(UsuarioReqDto usuarioReqDto) {
@@ -77,4 +95,6 @@ public class UsuarioService {
         }
 
     }
+
+
 }
