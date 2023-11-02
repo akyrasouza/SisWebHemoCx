@@ -1,58 +1,13 @@
-function gerarLista() {
+async function gerarLista() {
   var inputData = document.getElementById('dataDoacao').value;
   var data = new Date(inputData);
 
   // Aqui você pode adicionar a lógica para gerar a lista de acordo com a data
-  var lista_horarios = [
-    {
-      "id": 52,
-      "hora": "07:60",
-      "dia": "SEXTA",
-      "sigla": "SEX"
-    },
-    {
-      "id": 53,
-      "hora": "08:00",
-      "dia": "SEXTA",
-      "sigla": "SEX"
-    },
-    {
-      "id": 54,
-      "hora": "08:60",
-      "dia": "SEXTA",
-      "sigla": "SEX"
-    },
-    {
-      "id": 55,
-      "hora": "09:00",
-      "dia": "SEXTA",
-      "sigla": "SEX"
-    },
-    {
-      "id": 56,
-      "hora": "09:60",
-      "dia": "SEXTA",
-      "sigla": "SEX"
-    },
-    {
-      "id": 57,
-      "hora": "10:00",
-      "dia": "SEXTA",
-      "sigla": "SEX"
-    },
-    {
-      "id": 58,
-      "hora": "10:60",
-      "dia": "SEXTA",
-      "sigla": "SEX"
-    },
-    {
-      "id": 59,
-      "hora": "11:00",
-      "dia": "SEXTA",
-      "sigla": "SEX"
-    }
-  ];
+   // Obtém a data atual
+  const dataAtual = new Date();
+// Formata a data no formato "dd-mm-yyyy"
+ const dataFormatada = formatarData(dataAtual);
+  var lista_horarios= await buscarHorarios(dataFormatada);
   var select = document.getElementById("horario");
   lista_horarios.forEach(function (horario) {
   var option = document.createElement("option");
@@ -83,4 +38,12 @@ function agendarDoacao() {
   };
 
   console.log(body); // Exibe o objeto preenchido no console (para fins de demonstração)
+}
+//retirar quando a data estiver no formato correto
+function formatarData(data) {
+  const dia = data.getDate().toString().padStart(2, '0');
+  const mes = (data.getMonth() + 1).toString().padStart(2, '0');
+  const ano = data.getFullYear().toString();
+
+  return dia + '-' + mes + '-' + ano;
 }

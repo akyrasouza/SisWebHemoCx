@@ -1,4 +1,4 @@
-async function fetchAlterarStatus(doacao,status){
+async function envioAlterarStatus(doacao,status){
 
     await fetch(`http://26.49.188.195:8080/doacoes/${doacao}/status/${status}`, {
     method: 'PUT',    
