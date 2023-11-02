@@ -2,6 +2,7 @@ package com.akira.apihemomar.services;
 
 
 import com.akira.apihemomar.dto.request.DoacaoReqDto;
+import com.akira.apihemomar.exception.ConflitoException;
 import com.akira.apihemomar.models.Doacao;
 import com.akira.apihemomar.models.HistoricoDoacao;
 import com.akira.apihemomar.repository.DoacaoRepository;
@@ -67,10 +68,10 @@ public class DoacaoService {
         try {
            HistoricoDoacao historicoDoacao= historicoDoacaoService.buscarHistoricosData(doacaoReqDto.getDataDoacao(),doacaoReqDto.getUsuario());
            if(Objects.nonNull(historicoDoacao)){
-               throw new RuntimeException("Data já cadastrada !");
+               throw new ConflitoException("Data já cadastrada !");
            }
             if (DataUtil.dataPassado(doacaoReqDto.getDataDoacao())) {
-                throw new RuntimeException("A data informada não pode ser anterior á data  atual !");
+                throw new ConflitoException("A data informada não pode ser anterior á data  atual !");
             }
         } catch (ParseException e) {
             throw new RuntimeException(e);
