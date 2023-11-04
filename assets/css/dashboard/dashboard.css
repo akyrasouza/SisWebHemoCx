@@ -1,29 +1,3 @@
-<<<<<<< HEAD
-/*Placeholder*/
-#dataDoacao::-webkit-input-placeholder{
-  color:#D3D3D3;
-  font-style: bold; 
-}
-
-/*Icon data*/
-.container_icon{
-  position: relative;
-}
-.container_icon > i{
-  position: absolute;
-  top: 8px;
-  right: 15px;
-}
-.container_icon > input{
-  padding-right: 5px;
-}
-
-/*Descrição agendamento*/
-.desc{
-  font-size: 14px;
-  color: grey;
-}
-=======
 .error-toast {
     background: linear-gradient(to right, #d91e05, #c9501c) !important;
 }
@@ -79,4 +53,3 @@
     color: #000;
     margin: 0 10%;
   }
->>>>>>> ea42e22f9f7c673b1b66b77072e74d749b2409ff

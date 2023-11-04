@@ -1,9 +1,16 @@
 async function filtroDash(parametros){  
+ 
    const filtro= await fetch(`http://26.49.188.195:8080/dashboard?${parametros}`, {
         method: 'GET',    
         headers: {
           "Content-Type": "application/json"
         }
+      })  
+      .then((response) => {        
+        if (!response.ok) {         
+         throw new Error('Erro', { cause: response.json() });
+        }    
+        return response;  
       })      
         .catch((e) => {
           e.cause.then((data) => {        
@@ -17,3 +24,5 @@ async function filtroDash(parametros){
     return await filtro.json();
 
 }
+
+
