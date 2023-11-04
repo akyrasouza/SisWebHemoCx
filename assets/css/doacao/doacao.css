@@ -1,0 +1,24 @@
+/*Placeholder*/
+#dataDoacao::-webkit-input-placeholder{
+  color:#D3D3D3;
+  font-style: bold; 
+}
+
+/*Icon data*/
+.container_icon{
+  position: relative;
+}
+.container_icon > i{
+  position: absolute;
+  top: 8px;
+  right: 15px;
+}
+.container_icon > input{
+  padding-right: 5px;
+}
+
+/*Descrição agendamento*/
+.desc{
+  font-size: 14px;
+  color: grey;
+}
