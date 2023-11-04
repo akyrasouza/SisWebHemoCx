@@ -1,3 +1,4 @@
+
 $('#dataDoacao').datepicker({
   closeText: "", 
   prevText: "Anterior", 
@@ -18,4 +19,7 @@ $('#dataDoacao').datepicker({
   beforeShow: function(input, inst) {      
     inst.dpDiv.addClass("datepicker-container");
   }
+}).on('change', function (e) {
+  gerarLista();
+  $('#div-icon-hs').show();
 });

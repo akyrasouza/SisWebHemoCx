@@ -14,14 +14,10 @@ const popularStatus=()=>
         },
         {
             "id":4,
-            "descricao":"AGUARDANDO"
-        },
-        {
-            "id":5,
             "descricao":"NEGADO"
         },
         {
-            "id":6,
+            "id":5,
             "descricao":"CONCLUIDO"
         }
        ]

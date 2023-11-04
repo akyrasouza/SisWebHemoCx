@@ -1,27 +1,4 @@
-/*Placeholder*/
-#dataDoacao::-webkit-input-placeholder{
-  color:#D3D3D3;
-  font-style: bold; 
-}
 
-/*Icon data*/
-.container_icon{
-  position: relative;
-}
-.container_icon > i{
-  position: absolute;
-  top: 8px;
-  right: 15px;
-}
-.container_icon > input{
-  padding-right: 5px;
-}
-
-/*Descrição agendamento*/
-.desc{
-  font-size: 14px;
-  color: grey;
-}
 .error-toast {
     background: linear-gradient(to right, #d91e05, #c9501c) !important;
 }
@@ -48,13 +25,25 @@
   .ui-datepicker-title {
     text-align: center;
   }
-
  
   .form-control.date-input {
-    width: 100%;
-    padding: 5px;
+    width: 50%;
     border-radius: 4px;
-    font-size: 14px;
+    font-size: 12px;
+  }
+
+ #horario {
+    width: 50%;
+    font-size: 12px;
+  }
+
+  #observacao{
+    width: 60%;
+    height: 75%;
+  }
+
+  #btn-agendar{
+    width: 60%;
   }
 
 
