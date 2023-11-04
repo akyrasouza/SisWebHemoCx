@@ -1,8 +1,4 @@
 $('#dataDoacao').datepicker({
-<<<<<<< HEAD
-  format: "dd-mm-yyyy"
-});
-=======
   closeText: "", 
   prevText: "Anterior", 
   nextText: "Próximo",
@@ -23,4 +19,3 @@ $('#dataDoacao').datepicker({
     inst.dpDiv.addClass("datepicker-container");
   }
 });
->>>>>>> ea42e22f9f7c673b1b66b77072e74d749b2409ff
