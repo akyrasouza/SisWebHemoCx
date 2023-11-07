@@ -1,35 +1,41 @@
-const popularStatus=()=>     
-       [
-        {
-            "id":1,
-            "descricao":"EM ANALISE"
-        },
-        {
-            "id":2,
-            "descricao":"CONFIRMADO"
-        },
-        {
-            "id":3,
-            "descricao":"SEM VAGA"
-        },
-        {
-            "id":4,
-            "descricao":"NEGADO"
-        },
-        {
-            "id":5,
-            "descricao":"CONCLUIDO"
+async function popularStatus() {
+    try {
+      const response = await fetch(`http://26.49.188.195:8080/status`, {
+        method: 'GET',
+        headers: {
+          "Content-Type": "application/json"
         }
-       ]
-    
-
-  var select = document.getElementById("status");
-  popularStatus().forEach(function (status) {    
-  var option = document.createElement("option");
-  option.value = status.id;
-  option.textContent = status.descricao;
-  select.appendChild(option);
-
-}); 
-
-
+      });
+  
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.mensagem || errorData.message || errorData.titulo || 'Sistema indisponível no momento. Por favor, tente mais tarde.');
+      }
+  
+      const filtro = await response.json();
+      return filtro;
+    } catch (error) {
+      showMessage({
+        text: error.message,
+        className: "error-toast",
+      });
+      return [];
+    }
+  }
+  
+  (async () => {
+    try {
+      const todosStatus = await popularStatus();
+  
+      var select = document.getElementById("status");
+      todosStatus.forEach(function (status) {
+        var option = document.createElement("option");
+        option.value = status.id;
+        option.textContent = status.descricao;
+        select.appendChild(option);
+      });
+    } catch (error) {
+      console.error("Erro ao popular os status:", error);
+    }
+  })();
+  
