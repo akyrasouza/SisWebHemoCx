@@ -29,6 +29,14 @@ public class HistoricoDoacaoSpec {
             return builder.equal(root.get("doacao").get("horario").get("hora"),hora);
         };
     }
+    public static Specification<HistoricoDoacao> comUsuarioHistoricoDoacao(Long usuarioId) {
+        return (root, query, builder) -> {
+            if (Objects.isNull(usuarioId)) {
+                return builder.conjunction();
+            }
+            return builder.equal(root.get("doacao").get("usuario").get("id"),usuarioId);
+        };
+    }
     public static Specification<HistoricoDoacao> comNomeHistoricoDoacao(String nome) {
         return (root, query, builder) -> {
             if (Objects.isNull(nome)) {

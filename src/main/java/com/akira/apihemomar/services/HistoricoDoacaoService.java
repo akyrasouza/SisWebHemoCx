@@ -50,5 +50,12 @@ public class HistoricoDoacaoService {
                .and(HistoricoDoacaoSpec.comdataIniciodataFimHistoricoDoacao(dataInicio,dataFim))
        );
     }
+    public List<HistoricoDoacao> buscarDoacoesAgendadas(Long usuarioId){
+        return historicoDoacaoRepository.findAll(
+                HistoricoDoacaoSpec.comAtivoHistoricoDoacao()
+                        .and(HistoricoDoacaoSpec.comUsuarioHistoricoDoacao(usuarioId))
+
+        );
+    }
 
 }

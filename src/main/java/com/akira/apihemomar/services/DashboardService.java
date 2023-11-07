@@ -24,6 +24,11 @@ public class DashboardService {
                .stream()
                .map(this::converterParaDashBoardDto).collect(Collectors.toList());
     }
+    public List<DashboardRespDto>  buscarDoacoesAgendadas(Long usuarioId){
+        return historicoDoacaoService.buscarDoacoesAgendadas(usuarioId)
+                .stream()
+                .map(this::converterParaDashBoardDto).collect(Collectors.toList());
+    }
     private DashboardRespDto converterParaDashBoardDto(HistoricoDoacao  historicoDoacao){
       return modelMapper.map(historicoDoacao, DashboardRespDto.class);
     }
