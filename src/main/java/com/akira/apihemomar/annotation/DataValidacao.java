@@ -10,6 +10,7 @@ public class DataValidacao implements ConstraintValidator<DateCustom,String> {
     String regex = "^(3[01]|[12][0-9]|0[1-9])-(1[0-2]|0[1-9])-[0-9]{4}$";
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
+        if(Objects.isNull(value)){return  false;}
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(value);
         return matcher.matches();

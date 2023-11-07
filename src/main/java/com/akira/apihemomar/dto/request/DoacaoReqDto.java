@@ -18,7 +18,7 @@ public class DoacaoReqDto {
     private Long usuario;
     @NotNull(message = "O tipo  de doação não pode vazio ou nulo!")
     private Long tipoDoacao;
-    @NotNull(message = "O horário de doação não pode vazio ou nulo!")
+    @NotNull(message = "O horário de doação não pode ser vazio ou nulo!")
     private Long horario;
 
     public Date getDataDoacao() throws ParseException {

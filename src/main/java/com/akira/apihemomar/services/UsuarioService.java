@@ -5,30 +5,34 @@ import com.akira.apihemomar.dto.request.LoginReqDto;
 import com.akira.apihemomar.dto.request.UsuarioReqDto;
 import com.akira.apihemomar.dto.response.LoginUsuarioRespDto;
 import com.akira.apihemomar.dto.response.UsuarioRespDto;
+import com.akira.apihemomar.enums.PERFIL;
 import com.akira.apihemomar.exception.ConflitoException;
 import com.akira.apihemomar.exception.NotFoundException;
+import com.akira.apihemomar.models.ModuloPerfil;
 import com.akira.apihemomar.models.Usuario;
 import com.akira.apihemomar.repository.UsuarioRepository;
 import com.akira.apihemomar.util.Criptografia;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
 public class UsuarioService {
-    @Autowired
-    private UsuarioRepository usuarioRepository;
-
-    @Autowired
-    private EnderecoService enderecoService;
-    @Autowired
-    private ModelMapper modelMapper;
+    private final UsuarioRepository usuarioRepository;
+    private final  EnderecoService enderecoService;
+    private final  ModelMapper modelMapper;
+    private  final UsuarioPerfilService  usuarioPerfilService;
+    private  final ModuloPerfilService moduloPerfilService;
+    public UsuarioService(UsuarioRepository usuarioRepository, EnderecoService enderecoService, ModelMapper modelMapper, UsuarioPerfilService usuarioPerfilService, ModuloPerfilService moduloPerfilService) {
+        this.usuarioRepository = usuarioRepository;
+        this.enderecoService = enderecoService;
+        this.modelMapper = modelMapper;
+        this.usuarioPerfilService = usuarioPerfilService;
+        this.moduloPerfilService = moduloPerfilService;
+    }
 
     public List<UsuarioRespDto> findAll() {
         return usuarioRepository.findAll()
@@ -48,9 +52,15 @@ public class UsuarioService {
         usuario.setLogin(usuarioReqDto.getEmail());
         usuario=usuarioRepository.save(usuario);
         enderecoService.cadastrarEndereco(usuario.getId(),usuarioReqDto);
+        cadastrarPerfilUsuario(usuario, PERFIL.USER);
         return converterUsuarioEmDto(usuario);
 
     }
+
+    private void cadastrarPerfilUsuario(Usuario usuario, PERFIL user) {
+        usuarioPerfilService.cadastrarPerfilUsuario(usuario,user.getId());
+    }
+
     public LoginUsuarioRespDto loginUsuario(LoginReqDto loginReqDto) {
         Usuario usuario=usuarioRepository.findByLogin(loginReqDto.getUsuario())
                 .orElseThrow(()->new NotFoundException("Login  não encontrado!"));
@@ -65,11 +75,17 @@ public class UsuarioService {
     }
     private LoginUsuarioRespDto converterUsuarioEmDtoLogin(Usuario usuario) {
         LoginUsuarioRespDto loginDto = modelMapper.map(usuario, LoginUsuarioRespDto.class);
-        loginDto.getItensMenu().add("informacoes");
-        loginDto.getItensMenu().add("doacao");
-        loginDto.getItensMenu().add("dashboard");
-        loginDto.getItensMenu().add("configuracoes");
+        loginDto.getItensMenu().addAll(buscarModulos(usuario.getId()));
         return loginDto;
+    }
+    private List<String> buscarModulos(Long usuarioId){
+        List<ModuloPerfil> moduloPerfils = moduloPerfilService.buscarModulosPerfilUsuario(usuarioId);
+        if(moduloPerfils.isEmpty()){throw new NotFoundException("O usuário não possui opções de menu");}
+        return moduloPerfils
+                .stream()
+                .sorted(Comparator.comparing(mp->mp.getModulo().getId()))
+                .map(moduloPerfil->moduloPerfil.getModulo().getDescricao())
+                .collect(Collectors.toList());
     }
 
     private Usuario converterDtoEmCadastroUsuario(UsuarioReqDto usuarioReqDto) {
