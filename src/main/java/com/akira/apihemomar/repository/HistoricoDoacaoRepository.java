@@ -1,6 +1,7 @@
 package com.akira.apihemomar.repository;
 
 import com.akira.apihemomar.models.HistoricoDoacao;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -24,4 +25,6 @@ public interface HistoricoDoacaoRepository extends JpaRepository<HistoricoDoacao
     HistoricoDoacao buscarDoacaoAtiva(Long doacao);
 
     List<HistoricoDoacao> findAllByAtivoIsTrue();
+
+    List<HistoricoDoacao> findAll(Specification<HistoricoDoacao> and);
 }

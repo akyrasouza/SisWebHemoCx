@@ -2,6 +2,8 @@ package com.akira.apihemomar.services;
 
 
 import com.akira.apihemomar.dto.response.HorarioRespDto;
+import com.akira.apihemomar.enums.SIGLA;
+import com.akira.apihemomar.exception.NotFoundException;
 import com.akira.apihemomar.models.Horario;
 import com.akira.apihemomar.repository.HorarioRepository;
 import com.akira.apihemomar.util.DataUtil;
@@ -24,6 +26,14 @@ public class HorarioService {
     public Horario buscarHorarioId(Long id){
         //todo:substituir exception pela customizada
         return horarioRepository.findById(id).orElseThrow(()->new RuntimeException("Horário  não encontrado !"));
+    }
+    public List<HorarioRespDto> buscarHorariosPeloDiaSemana(SIGLA sigla){
+
+        return horarioRepository.buscarHorariosPeloDiaSemana(sigla.name())
+                .stream()
+                .map(this::converterHorarioEmDto)
+                .collect(Collectors.toList());
+
     }
     public List<HorarioRespDto> buscarHorarioPeloDia(Date data){
        Integer inciceSemana= DataUtil.getIndiceData(data);

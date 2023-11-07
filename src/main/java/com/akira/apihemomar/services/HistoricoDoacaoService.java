@@ -1,10 +1,12 @@
 package com.akira.apihemomar.services;
 
 
+import com.akira.apihemomar.enums.SIGLA;
 import com.akira.apihemomar.models.Doacao;
 import com.akira.apihemomar.models.HistoricoDoacao;
 import com.akira.apihemomar.models.StatusDoacao;
 import com.akira.apihemomar.repository.HistoricoDoacaoRepository;
+import com.akira.apihemomar.repository.spec.HistoricoDoacaoSpec;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,8 +41,14 @@ public class HistoricoDoacaoService {
     public HistoricoDoacao buscarHistoricosData(Date data, Long usuarioId){
        return historicoDoacaoRepository.buscarHistoricosData(data,usuarioId);
     }
-    public List<HistoricoDoacao> buscarDoacoesAgendadas(){
-        return historicoDoacaoRepository.findAllByAtivoIsTrue();
+    public List<HistoricoDoacao> buscarDoacoesAgendadas(Date dataInicio, Date  dataFim, String nome, SIGLA dia, String hora){
+       return historicoDoacaoRepository.findAll(
+                HistoricoDoacaoSpec.comAtivoHistoricoDoacao()
+               .and(HistoricoDoacaoSpec.comHoraHistoricoDoacao(hora))
+               .and(HistoricoDoacaoSpec.comDiaHistoricoDoacao(dia))
+               .and(HistoricoDoacaoSpec.comNomeHistoricoDoacao(nome))
+               .and(HistoricoDoacaoSpec.comdataIniciodataFimHistoricoDoacao(dataInicio,dataFim))
+       );
     }
 
 }
