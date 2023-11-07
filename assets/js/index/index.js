@@ -17,16 +17,21 @@ function adicionarItensAoMenu() {
   const sidebar = document.querySelector('.sidebar-icons');
   items.forEach(item => {
     const menuItem = document.createElement('div');
-    menuItem.classList.add('menu-item');
-    menuItem.innerHTML = `<i class="fas ${itemIcons[item]}"></i>`;
+    menuItem.classList.add('menu-item');         
+    menuItem.setAttribute('data-toggle', 'tooltip');
+    menuItem.setAttribute('data-placement', 'right');
+    menuItem.setAttribute('title',item);
+    menuItem.innerHTML = `<i class="fas ${itemIcons[item]}"></i>`;     
     menuItem.onclick = function () {
       showContent(item);
     };
     sidebar.appendChild(menuItem);
   });
+ 
 }
 const itemIcons = {
     'doacao': 'fa-user',
+    'historico': 'fa-history',
     'informacoes': 'fa-info-circle',
     'dashboard':'fa fa-dashboard',
     'configuracoes': 'fa-cog'
