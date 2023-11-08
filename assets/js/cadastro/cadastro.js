@@ -5,16 +5,16 @@ let etapaAtual = 1;
 
 (() => {
   const modelo = {
-    "nome": "Nome Teste 3",
-    "cpf": "123.652.506-02",
-    "dataNascimento": "12-04-1998",
-    "sexo": "F",
-    "nomeMae": "Nome da mãe",
-    "telefone": "(98) 98456-1245",
-    "tipoSanguineo": "A",
-    "fatorRH": "POSITIVO",
-    "email": "email3@fake-gmail.com",
-    "senha": "12345678"
+    "nome": "",
+    "cpf": "",
+    "dataNascimento": "",
+    "sexo": "",
+    "nomeMae": "",
+    "telefone": "",
+    "tipoSanguineo": "",
+    "fatorRH": "",
+    "email": "",
+    "senha": ""
   };
 
   Object.entries(modelo).forEach(([key, value]) => {

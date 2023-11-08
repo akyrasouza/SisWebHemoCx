@@ -19,38 +19,42 @@
 </head>
 
 <body>
-  <div class="container ">
-    <h6 class="h6">Agende sua Data e Horário</h6>
+  <div class="container py-4">
     <div class="row">
-      <!-- Adicione a imagem aqui -->
-      <div class="col-sm-5 col-md-5 d-flex ">
+      <div class="col-sm-6">
+        <h6 class="h6">Agende sua Data e Horário</h6>
+        <form id="formDoacao">
+          <div class="row py-2 ">
+            <div class="col-sm-6 col-md-6 d-flex">
+              <input class="form-control date-input" readonly="readonly" type="text" id="dataDoacao" name="dataDoacao" placeholder="Selecionar Data">
+              <i class="bi bi-calendar-week px-1"></i>
+            </div>
+            <div class="col-sm-6 col-md-6  input-group-prepend" id="div-icon-hs" style="display: none;">
+              <select class="custom-select" id="horario">
+              </select>
+              <i class="bi bi-alarm"></i>
+            </div>
+          </div>
+
+          <div class="row py-2">
+            <div class="col-sm-12 col-md-12 d-block">
+              <input class="form-control mb-2" type="text" id="observacao" placeholder="Descrição">
+              <div class="mb-5">
+                <button class="btn btn-primary text-sm" id="btn-agendar" type="button" onclick="agendarDoacao()"> <span>
+                    Agendar
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-sm-6 mt-5">
+        <!-- Adicione a imagem aqui -->
         <img src="../assets/img/agendar2.png" alt="Imagem" style="float:center; width: 70%;">
       </div>
     </div>
-    <form id="formDoacao">
-      <div class="row py-2 ">
-        <div class="col-sm-3 col-md-3 d-flex">
-          <input class="form-control date-input" readonly="readonly" type="text" id="dataDoacao" name="dataDoacao" placeholder="Selecionar Data">
-          <i class="bi bi-calendar-week px-1"></i>
-        </div>
-        <div class="col-sm-4 col-md-4  input-group-prepend" id="div-icon-hs" style="display: none;">
-          <select class="custom-select" id="horario">
-          </select>
-          <i class="bi bi-alarm"></i>
-        </div>
-      </div>
-
-      <div class="row py-2">
-        <div class="col-sm-6 col-md-6 d-block">
-          <input class="form-control" type="text" id="observacao" placeholder="Descrição">
-          <div class="col-sm-6 col-md-6 py-2">
-            <button class="btn btn-primary btn-sm" id="btn-agendar" type="button" onclick="agendarDoacao()">Agendar</button>
-          </div>
-        </div>
-      </div>
-    </form>
   </div>
-
 
   <script src="../assets/js/doacao/mascaraData.js"></script>
   <script src="../assets/js/doacao/enviarDoacao.js"></script>

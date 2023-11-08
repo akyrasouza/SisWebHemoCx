@@ -44,7 +44,7 @@ if (userData) {
     const userName = userData.nome; 
     items = userData.itensMenu;    
     const userSpan = document.getElementById("user-name");
-    userSpan.textContent = userName;
+    userSpan.textContent = userName.substring(0, 9);
     adicionarItensAoMenu();
 } else {
    

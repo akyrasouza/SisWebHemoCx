@@ -27,7 +27,7 @@
   }
  
   .form-control.date-input {
-    width: 50%;
+    width: 60%;
     border-radius: 4px;
     font-size: 12px;
   }
@@ -38,12 +38,12 @@
   }
 
   #observacao{
-    width: 60%;
+    width: 100%;
     height: 75%;
   }
 
   #btn-agendar{
-    width: 60%;
+    width: 100%;
   }
 
 
