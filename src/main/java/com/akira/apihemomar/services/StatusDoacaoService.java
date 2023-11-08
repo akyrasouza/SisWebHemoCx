@@ -3,6 +3,7 @@ package com.akira.apihemomar.services;
 
 
 import com.akira.apihemomar.dto.response.StatusRespDto;
+import com.akira.apihemomar.exception.NotFoundException;
 import com.akira.apihemomar.models.StatusDoacao;
 import com.akira.apihemomar.repository.StatusDoacaoRepository;
 import org.modelmapper.ModelMapper;
@@ -21,8 +22,7 @@ public class StatusDoacaoService {
     }
 
     public StatusDoacao buscarStatusDocaoId(Long id){
-        //todo:substituir exception pela customizada
-        return statusDoacaoRepository.findById(id).orElseThrow(()->new RuntimeException("Status doação não encontrado !"));
+        return statusDoacaoRepository.findById(id).orElseThrow(()->new NotFoundException("Status doação não encontrado !"));
     }
     public List<StatusRespDto> buscarTodosStatus(){
         return  statusDoacaoRepository.findAll()

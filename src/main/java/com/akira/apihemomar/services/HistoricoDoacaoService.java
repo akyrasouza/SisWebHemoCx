@@ -7,7 +7,6 @@ import com.akira.apihemomar.models.HistoricoDoacao;
 import com.akira.apihemomar.models.StatusDoacao;
 import com.akira.apihemomar.repository.HistoricoDoacaoRepository;
 import com.akira.apihemomar.repository.spec.HistoricoDoacaoSpec;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,8 +16,12 @@ import java.util.List;
 @Service
 public class HistoricoDoacaoService {
 
-    @Autowired
-    private HistoricoDoacaoRepository  historicoDoacaoRepository;
+
+    private final HistoricoDoacaoRepository  historicoDoacaoRepository;
+
+    public HistoricoDoacaoService(HistoricoDoacaoRepository historicoDoacaoRepository) {
+        this.historicoDoacaoRepository = historicoDoacaoRepository;
+    }
 
     @Transactional
     public void cadastrarHistoricoDoacao(Doacao  doacao,Long status){

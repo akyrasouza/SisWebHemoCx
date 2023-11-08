@@ -16,12 +16,16 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.*;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
 public class UsuarioService {
     private final UsuarioRepository usuarioRepository;
+
     private final  EnderecoService enderecoService;
     private final  ModelMapper modelMapper;
     private  final UsuarioPerfilService  usuarioPerfilService;
@@ -41,7 +45,6 @@ public class UsuarioService {
                 .collect(Collectors.toList());
     }
     public Usuario buscarUsuarioId(Long id){
-        //todo:substituir exception pela customizada
         return usuarioRepository.findById(id).orElseThrow(()->new NotFoundException("Usuario não encontrado !"));
     }
 
@@ -51,7 +54,7 @@ public class UsuarioService {
         Usuario usuario = converterDtoEmCadastroUsuario(usuarioReqDto);
         usuario.setLogin(usuarioReqDto.getEmail());
         usuario=usuarioRepository.save(usuario);
-        enderecoService.cadastrarEndereco(usuario.getId(),usuarioReqDto);
+        enderecoService.cadastrarEndereco(usuario,usuarioReqDto);
         cadastrarPerfilUsuario(usuario, PERFIL.USER);
         return converterUsuarioEmDto(usuario);
 
@@ -100,7 +103,7 @@ public class UsuarioService {
     }
 
     private void validarCadastroUsuario(UsuarioReqDto usuarioReqDto) {
-        //todo:mudar para exception customizada
+
         Optional<Usuario>  usuarioEmail=usuarioRepository.findByEmailIgnoreCase(usuarioReqDto.getEmail());
         if(usuarioEmail.isPresent()){
            throw new ConflitoException("Já existe um usuario com este E-mail !");

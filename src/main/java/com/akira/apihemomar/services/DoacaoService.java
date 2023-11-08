@@ -8,7 +8,6 @@ import com.akira.apihemomar.models.HistoricoDoacao;
 import com.akira.apihemomar.repository.DoacaoRepository;
 import com.akira.apihemomar.util.DataUtil;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,22 +16,33 @@ import java.util.Objects;
 
 @Service
 public class DoacaoService {
-    @Autowired
-    private DoacaoRepository  doacaoRepository;    
-    @Autowired
-    private ModelMapper  modelMapper;
 
-    @Autowired
-    private UsuarioService  usuarioService;
+    private final DoacaoRepository  doacaoRepository;
 
-    @Autowired
-    private TipoDoacaoService  tipoDoacaoService;
+    private final ModelMapper  modelMapper;
 
-    @Autowired
-    private  HorarioService horarioService;
 
-    @Autowired
+    private final UsuarioService  usuarioService;
+
+
+    private final TipoDoacaoService  tipoDoacaoService;
+
+
+    private  final HorarioService horarioService;
+
+
     private HistoricoDoacaoService  historicoDoacaoService;
+
+    public DoacaoService(DoacaoRepository doacaoRepository, ModelMapper modelMapper, UsuarioService usuarioService,
+                         TipoDoacaoService tipoDoacaoService, HorarioService horarioService, HistoricoDoacaoService historicoDoacaoService) {
+        this.doacaoRepository = doacaoRepository;
+        this.modelMapper = modelMapper;
+        this.usuarioService = usuarioService;
+        this.tipoDoacaoService = tipoDoacaoService;
+        this.horarioService = horarioService;
+        this.historicoDoacaoService = historicoDoacaoService;
+    }
+
     @Transactional
     public void atualizarDoacao(Long doacaoId, Long status) {
      HistoricoDoacao historicoDoacao=historicoDoacaoService.buscarDoacaoAtiva(doacaoId);
@@ -41,7 +51,6 @@ public class DoacaoService {
     }
     @Transactional
     public void cadastrarDoacao(DoacaoReqDto  doacaoReqDto){
-        //todo:analisar cadastro para o mesmo dia
         validarCadastroDoacao(doacaoReqDto);
         Doacao doacao=converterDtoEmDoacao(doacaoReqDto);
         doacao= doacaoRepository.save(doacao);
@@ -64,7 +73,7 @@ public class DoacaoService {
 
 
     private void validarCadastroDoacao(DoacaoReqDto doacaoReqDto) {
-        //todo:trocar exception
+
         try {
            HistoricoDoacao historicoDoacao= historicoDoacaoService.buscarHistoricosData(doacaoReqDto.getDataDoacao(),doacaoReqDto.getUsuario());
            if(Objects.nonNull(historicoDoacao)){
@@ -74,7 +83,7 @@ public class DoacaoService {
                 throw new ConflitoException("A data informada não pode ser anterior á data  atual !");
             }
         } catch (ParseException e) {
-            throw new RuntimeException(e);
+            throw new ConflitoException("Conflito de formatação de data!");
         }
     }
 

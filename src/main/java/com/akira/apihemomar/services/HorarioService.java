@@ -8,7 +8,6 @@ import com.akira.apihemomar.models.Horario;
 import com.akira.apihemomar.repository.HorarioRepository;
 import com.akira.apihemomar.util.DataUtil;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -18,14 +17,19 @@ import java.util.stream.Collectors;
 @Service
 public class HorarioService {
 
-    @Autowired
-    private HorarioRepository  horarioRepository;
-    @Autowired
-    private ModelMapper modelMapper;
+
+    private final HorarioRepository  horarioRepository;
+
+    private final  ModelMapper modelMapper;
+
+    public HorarioService(HorarioRepository horarioRepository, ModelMapper modelMapper) {
+        this.horarioRepository = horarioRepository;
+        this.modelMapper = modelMapper;
+    }
 
     public Horario buscarHorarioId(Long id){
-        //todo:substituir exception pela customizada
-        return horarioRepository.findById(id).orElseThrow(()->new RuntimeException("Horário  não encontrado !"));
+
+        return horarioRepository.findById(id).orElseThrow(()->new NotFoundException("Horário  não encontrado !"));
     }
     public List<HorarioRespDto> buscarHorariosPeloDiaSemana(SIGLA sigla){
 
