@@ -1,25 +1,25 @@
 package com.akira.apihemomar.services;
 
 
+import com.akira.apihemomar.dto.request.AtualizarSenhaReqDto;
 import com.akira.apihemomar.dto.request.LoginReqDto;
 import com.akira.apihemomar.dto.request.UsuarioReqDto;
 import com.akira.apihemomar.dto.response.LoginUsuarioRespDto;
 import com.akira.apihemomar.dto.response.UsuarioRespDto;
 import com.akira.apihemomar.enums.PERFIL;
+import com.akira.apihemomar.exception.BadRequestException;
 import com.akira.apihemomar.exception.ConflitoException;
 import com.akira.apihemomar.exception.NotFoundException;
 import com.akira.apihemomar.models.ModuloPerfil;
 import com.akira.apihemomar.models.Usuario;
 import com.akira.apihemomar.repository.UsuarioRepository;
 import com.akira.apihemomar.util.Criptografia;
+import com.akira.apihemomar.util.GerarCodigo;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Comparator;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -30,12 +30,14 @@ public class UsuarioService {
     private final  ModelMapper modelMapper;
     private  final UsuarioPerfilService  usuarioPerfilService;
     private  final ModuloPerfilService moduloPerfilService;
-    public UsuarioService(UsuarioRepository usuarioRepository, EnderecoService enderecoService, ModelMapper modelMapper, UsuarioPerfilService usuarioPerfilService, ModuloPerfilService moduloPerfilService) {
+    private  final EnvioEmailUsuario envioEmailUsuario;
+    public UsuarioService(UsuarioRepository usuarioRepository, EnderecoService enderecoService, ModelMapper modelMapper, UsuarioPerfilService usuarioPerfilService, ModuloPerfilService moduloPerfilService, EnvioEmailUsuario envioEmailUsuario) {
         this.usuarioRepository = usuarioRepository;
         this.enderecoService = enderecoService;
         this.modelMapper = modelMapper;
         this.usuarioPerfilService = usuarioPerfilService;
         this.moduloPerfilService = moduloPerfilService;
+        this.envioEmailUsuario = envioEmailUsuario;
     }
 
     public List<UsuarioRespDto> findAll() {
@@ -46,6 +48,9 @@ public class UsuarioService {
     }
     public Usuario buscarUsuarioId(Long id){
         return usuarioRepository.findById(id).orElseThrow(()->new NotFoundException("Usuario não encontrado !"));
+    }
+    public Usuario buscarUsuarioEmail(String email){
+        return usuarioRepository.findByEmail(email).orElseThrow(()->new NotFoundException("Usuario não encontrado !"));
     }
 
     @Transactional
@@ -71,6 +76,13 @@ public class UsuarioService {
             throw new NotFoundException("Login  não encontrado!");
         }
         return converterUsuarioEmDtoLogin(usuario);
+    }
+    public void recuperarSenhaUsuario(String email) {
+        Usuario usuario=buscarUsuarioEmail(email);
+        String codigo= GerarCodigo.gerarCodigo();
+        usuario.setResetSenha(Criptografia.md5(codigo));
+        usuarioRepository.save(usuario);
+        envioEmailUsuario.envioEmail(email,codigo);
     }
 
     private UsuarioRespDto converterUsuarioEmDto(Usuario usuario) {
@@ -114,6 +126,21 @@ public class UsuarioService {
         }
 
     }
+    @Transactional
+    public void atualizarSenhaUsuario(AtualizarSenhaReqDto atualizarSenhaReqDto) {
+        Usuario usuario=buscarUsuarioEmail(atualizarSenhaReqDto.getEmail());
+        validarAtualizacaoSenha(usuario,atualizarSenhaReqDto);
+        usuario.setSenha(Criptografia.md5(atualizarSenhaReqDto.getSenha()));
+        usuario.setResetSenha(null);
+        usuarioRepository.save(usuario);
+    }
 
-
+    private void validarAtualizacaoSenha(Usuario usuario, AtualizarSenhaReqDto atualizarSenhaReqDto) {
+        if(Objects.isNull(usuario.getResetSenha())){
+            throw new NotFoundException("Solicitação de atualização de senha não encontrada, favor solicite novamente !");
+        }
+        if(!usuario.getResetSenha().equals(Criptografia.md5(atualizarSenhaReqDto.getCodigo().trim()))){
+            throw new BadRequestException("Código errado, verifique o seu E-mail novamente!");
+        }
+    }
 }

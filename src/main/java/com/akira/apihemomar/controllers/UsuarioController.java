@@ -1,6 +1,7 @@
 package com.akira.apihemomar.controllers;
 
 
+import com.akira.apihemomar.dto.request.AtualizarSenhaReqDto;
 import com.akira.apihemomar.dto.request.LoginReqDto;
 import com.akira.apihemomar.dto.request.UsuarioReqDto;
 import com.akira.apihemomar.dto.response.LoginUsuarioRespDto;
@@ -33,5 +34,15 @@ public class UsuarioController {
     @GetMapping
     public ResponseEntity<List<UsuarioRespDto>> findAll(){
         return ResponseEntity.ok(usuarioService.findAll());
+    }
+    @PostMapping("/recuperar/senha/email/{email}")
+    public  ResponseEntity<Void> recuperarSenhaUsuario(@PathVariable("email") String email){
+        usuarioService.recuperarSenhaUsuario(email);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+    @PutMapping("/atualizar/senha")
+    public  ResponseEntity<Void> atualizarSenhaUsuario(@RequestBody @Valid AtualizarSenhaReqDto atualizarSenhaReqDto){
+        usuarioService.atualizarSenhaUsuario(atualizarSenhaReqDto);
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 }

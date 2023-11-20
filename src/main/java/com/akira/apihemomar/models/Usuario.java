@@ -49,9 +49,19 @@ public class Usuario implements Serializable {
     private String tipoSanguineo;
     @Column(name = "TB01_FATOR_RH")
     private  String fatorRH;
+    @Column(name = "TB01_RESET_SENHA")
+    private  String resetSenha;
 
     public Usuario() {
 
+    }
+
+    public String getResetSenha() {
+        return resetSenha;
+    }
+
+    public void setResetSenha(String resetSenha) {
+        this.resetSenha = resetSenha;
     }
 
     public String getLogin() {
@@ -188,11 +198,11 @@ public class Usuario implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Usuario usuario = (Usuario) o;
-        return Objects.equals(id, usuario.id) && Objects.equals(login, usuario.login) && Objects.equals(nome, usuario.nome) && Objects.equals(senha, usuario.senha) && Objects.equals(dataCadastro, usuario.dataCadastro) && Objects.equals(ultimoAcesso, usuario.ultimoAcesso) && Objects.equals(bloqueado, usuario.bloqueado) && Objects.equals(dataBloqueio, usuario.dataBloqueio) && Objects.equals(cpf, usuario.cpf) && Objects.equals(email, usuario.email) && Objects.equals(telefone, usuario.telefone) &&  Objects.equals(nomeMae, usuario.nomeMae) && Objects.equals(dataNascimento, usuario.dataNascimento) && Objects.equals(sexo, usuario.sexo) && Objects.equals(tipoSanguineo, usuario.tipoSanguineo) && Objects.equals(fatorRH, usuario.fatorRH);
+        return Objects.equals(id, usuario.id) && Objects.equals(login, usuario.login) && Objects.equals(nome, usuario.nome) && Objects.equals(senha, usuario.senha) && Objects.equals(dataCadastro, usuario.dataCadastro) && Objects.equals(ultimoAcesso, usuario.ultimoAcesso) && Objects.equals(bloqueado, usuario.bloqueado) && Objects.equals(dataBloqueio, usuario.dataBloqueio) && Objects.equals(cpf, usuario.cpf) && Objects.equals(email, usuario.email) && Objects.equals(telefone, usuario.telefone) && Objects.equals(nomeMae, usuario.nomeMae) && Objects.equals(dataNascimento, usuario.dataNascimento) && Objects.equals(sexo, usuario.sexo) && Objects.equals(tipoSanguineo, usuario.tipoSanguineo) && Objects.equals(fatorRH, usuario.fatorRH) && Objects.equals(resetSenha, usuario.resetSenha);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, login, nome, senha, dataCadastro, ultimoAcesso, bloqueado, dataBloqueio, cpf, email, telefone, nomeMae, dataNascimento, sexo, tipoSanguineo, fatorRH);
+        return Objects.hash(id, login, nome, senha, dataCadastro, ultimoAcesso, bloqueado, dataBloqueio, cpf, email, telefone, nomeMae, dataNascimento, sexo, tipoSanguineo, fatorRH, resetSenha);
     }
 }
