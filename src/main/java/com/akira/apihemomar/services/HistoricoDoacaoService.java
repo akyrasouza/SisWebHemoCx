@@ -1,12 +1,15 @@
 package com.akira.apihemomar.services;
 
 
+import com.akira.apihemomar.enums.EMAIL;
 import com.akira.apihemomar.enums.SIGLA;
 import com.akira.apihemomar.models.Doacao;
 import com.akira.apihemomar.models.HistoricoDoacao;
 import com.akira.apihemomar.models.StatusDoacao;
 import com.akira.apihemomar.repository.HistoricoDoacaoRepository;
 import com.akira.apihemomar.repository.spec.HistoricoDoacaoSpec;
+import com.akira.apihemomar.template.TemplateEmail;
+import com.akira.apihemomar.util.DataUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,9 +21,13 @@ public class HistoricoDoacaoService {
 
 
     private final HistoricoDoacaoRepository  historicoDoacaoRepository;
+    private  final EnvioEmailUsuario envioEmailUsuario;
+    private  final StatusDoacaoService  statusDoacaoService;
 
-    public HistoricoDoacaoService(HistoricoDoacaoRepository historicoDoacaoRepository) {
+    public HistoricoDoacaoService(HistoricoDoacaoRepository historicoDoacaoRepository, EnvioEmailUsuario envioEmailUsuario, StatusDoacaoService statusDoacaoService) {
         this.historicoDoacaoRepository = historicoDoacaoRepository;
+        this.envioEmailUsuario = envioEmailUsuario;
+        this.statusDoacaoService = statusDoacaoService;
     }
 
     @Transactional
@@ -31,6 +38,10 @@ public class HistoricoDoacaoService {
         historicoDoacao.setDataCadastro(new Date());
         historicoDoacao.setStatusDoacao(new StatusDoacao(status));
         historicoDoacaoRepository.save(historicoDoacao);
+        StatusDoacao statusDoacao=statusDoacaoService.buscarStatusDocaoId(status);
+        String conteudo = "Olá "+doacao.getUsuario().getNome()+", o seu agendamento para a data "+ DataUtil.formatarData(doacao.getDataDoacao())+" em um dia de "+doacao.getHorario().getIndiceSemana().getDia()+" ás "+doacao.getHorario().getHora()+
+                " está com o status: "+statusDoacao.getDescricao();
+        envioEmailUsuario.envioEmail(doacao.getUsuario().getEmail(), EMAIL.TITULOSTATUS, TemplateEmail.templateAlteracaoStatus(conteudo));
     }
     @Transactional
     public void desativarHistoricoDoacao(HistoricoDoacao historicoDoacao){

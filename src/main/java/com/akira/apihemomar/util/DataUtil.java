@@ -1,6 +1,7 @@
 package com.akira.apihemomar.util;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
@@ -26,5 +27,10 @@ public class DataUtil {
               return true;
         }
         return false;
+    }
+    public static String formatarData(Date data){
+        SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
+        String dataFormatada = formatoData.format(data);
+       return dataFormatada;
     }
 }

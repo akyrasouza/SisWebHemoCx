@@ -6,6 +6,7 @@ import com.akira.apihemomar.dto.request.LoginReqDto;
 import com.akira.apihemomar.dto.request.UsuarioReqDto;
 import com.akira.apihemomar.dto.response.LoginUsuarioRespDto;
 import com.akira.apihemomar.dto.response.UsuarioRespDto;
+import com.akira.apihemomar.enums.EMAIL;
 import com.akira.apihemomar.enums.PERFIL;
 import com.akira.apihemomar.exception.BadRequestException;
 import com.akira.apihemomar.exception.ConflitoException;
@@ -13,6 +14,7 @@ import com.akira.apihemomar.exception.NotFoundException;
 import com.akira.apihemomar.models.ModuloPerfil;
 import com.akira.apihemomar.models.Usuario;
 import com.akira.apihemomar.repository.UsuarioRepository;
+import com.akira.apihemomar.template.TemplateEmail;
 import com.akira.apihemomar.util.Criptografia;
 import com.akira.apihemomar.util.GerarCodigo;
 import org.modelmapper.ModelMapper;
@@ -82,7 +84,7 @@ public class UsuarioService {
         String codigo= GerarCodigo.gerarCodigo();
         usuario.setResetSenha(Criptografia.md5(codigo));
         usuarioRepository.save(usuario);
-        envioEmailUsuario.envioEmail(email,codigo);
+        envioEmailUsuario.envioEmail(email, EMAIL.TITULORESETSENHA, TemplateEmail.templateAlteracaoSenha(codigo));
     }
 
     private UsuarioRespDto converterUsuarioEmDto(Usuario usuario) {
