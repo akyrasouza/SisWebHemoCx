@@ -1,6 +1,6 @@
 async function buscarHistoricoUsuario(id){  
  
-    const filtro= await fetch(`http://26.49.188.195:8080/dashboard/usuario/${id}`, {
+    const filtro= await fetch(`http://localhost:8080/dashboard/usuario/${id}`, {
          method: 'GET',    
          headers: {
            "Content-Type": "application/json"

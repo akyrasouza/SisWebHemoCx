@@ -9,7 +9,7 @@ async function login() {
       }
     });     
   
-    await fetch('http://26.49.188.195:8080/usuarios/login', {
+    await fetch('http://localhost:8080/usuarios/login', {
       method: 'POST',
       body: JSON.stringify(body),
       headers: {

@@ -1,6 +1,6 @@
 async function envioAlterarStatus(doacao,status){
 
-    await fetch(`http://26.49.188.195:8080/doacoes/${doacao}/status/${status}`, {
+    await fetch(`http://localhost:8080/doacoes/${doacao}/status/${status}`, {
     method: 'PUT',    
     headers: {
       "Content-Type": "application/json"

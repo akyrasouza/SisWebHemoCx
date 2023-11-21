@@ -66,7 +66,7 @@ async function enviarRelatorio() {
     }
   });
 
-  await fetch('http://26.49.188.195:8080/usuarios', {
+  await fetch('http://localhost:8080/usuarios', {
     method: 'POST',
     body: JSON.stringify(body),
     headers: {

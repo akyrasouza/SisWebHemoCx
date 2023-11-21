@@ -1,6 +1,6 @@
 async function popularStatus() {
     try {
-      const response = await fetch(`http://26.49.188.195:8080/status`, {
+      const response = await fetch(`http://localhost:8080/status`, {
         method: 'GET',
         headers: {
           "Content-Type": "application/json"

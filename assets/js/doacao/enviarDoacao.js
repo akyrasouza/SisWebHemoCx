@@ -1,5 +1,5 @@
 async function enviarDoacao(body){
-  await fetch(`http://26.49.188.195:8080/doacoes`, {
+  await fetch(`http://localhost:8080/doacoes`, {
   method: 'POST',  
   body: JSON.stringify(body),  
   headers: {

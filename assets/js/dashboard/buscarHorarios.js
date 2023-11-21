@@ -1,6 +1,6 @@
 async function buscarHorarios(parametros){  
  
-    const filtro= await fetch(`http://26.49.188.195:8080/horarios/semana/${parametros}`, {
+    const filtro= await fetch(`http://localhost:8080/horarios/semana/${parametros}`, {
          method: 'GET',    
          headers: {
            "Content-Type": "application/json"

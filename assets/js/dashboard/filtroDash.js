@@ -1,6 +1,6 @@
 async function filtroDash(parametros){  
  
-   const filtro= await fetch(`http://26.49.188.195:8080/dashboard?${parametros}`, {
+   const filtro= await fetch(`http://localhost:8080/dashboard?${parametros}`, {
         method: 'GET',    
         headers: {
           "Content-Type": "application/json"
