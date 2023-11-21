@@ -13,6 +13,16 @@ public class AtualizarSenhaReqDto {
     @NotBlank(message = "A senha não pode ser vazia ou nula!")
     private String senha;
 
+    public String getConfirmaSenha() {
+        return confirmaSenha;
+    }
+
+    public void setConfirmaSenha(String confirmaSenha) {
+        this.confirmaSenha = confirmaSenha;
+    }
+
+    private String confirmaSenha;
+
     public String getEmail() {
         return email;
     }

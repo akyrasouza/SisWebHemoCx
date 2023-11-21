@@ -80,6 +80,7 @@ public class UsuarioService {
         return converterUsuarioEmDtoLogin(usuario);
     }
     public void recuperarSenhaUsuario(String email) {
+
         Usuario usuario=buscarUsuarioEmail(email);
         String codigo= GerarCodigo.gerarCodigo();
         usuario.setResetSenha(Criptografia.md5(codigo));
