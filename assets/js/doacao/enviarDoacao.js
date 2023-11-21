@@ -9,8 +9,15 @@ async function enviarDoacao(body){
 .then((response) => {        
   if (!response.ok) {         
    throw new Error('Erro', { cause: response.json() });
-  }      
+  }   
+  
 })   
+.then(data => {           
+  showMessage({
+    text: 'Agendamento feito com sucesso!',
+    className: "success-toast",
+  }); 
+})
   .catch((e) => {     
     e.cause.then((data) => {
         showMessage({

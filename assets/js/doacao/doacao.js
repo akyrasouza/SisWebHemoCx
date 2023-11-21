@@ -24,4 +24,7 @@ async function agendarDoacao() {
   body["tipoDoacao"] = 1;  
   body["usuario"] = userData.id;
   await enviarDoacao(body);
+  Array.from(formEl.elements).forEach(element => {
+      element.value = null;    
+  }); 
 }
