@@ -24,17 +24,18 @@ function adicionarItensAoMenu() {
     menuItem.innerHTML = `<i class="fas ${itemIcons[item]}"></i>`;     
     menuItem.onclick = function () {
       showContent(item);
+      document.getElementById('index').style.display = "none";
     };
     sidebar.appendChild(menuItem);
   });
  
 }
 const itemIcons = {
-    'doacao': 'fa-user',
+    'doacao': 'fa-calendar',
     'historico': 'fa-history',
     'informacoes': 'fa-info-circle',
     'dashboard':'fa fa-dashboard',
-    'configuracoes': 'fa-cog'
+    'perfil': 'fa-user'
     
 };
 

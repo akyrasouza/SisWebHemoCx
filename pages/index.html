@@ -1,50 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hemomar</title>
-    <link rel="stylesheet" href="../assets/css/home/style.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css"
-    />
-  </head>
 
-  <body>
-    <div class="user-icon">
-      <i class="fas fa-user"></i>
-      <span id="user-name">Nome de Usuário</span>
-    </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hemomar</title>
+  <link rel="stylesheet" href="../assets/css/home/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" />
+</head>
 
-    <div class="container">
-      <div class="sidebar">
-        <div class="sidebar-header">
-          <div class="sidebar-toggle" onclick="toggleSidebar()">☰</div>
-          
-        </div>
-        <div class="sidebar-icons">
-         
-        </div>
+<body>
+
+  <div class="user-icon">
+    <i class="fas fa-user"></i>
+    <span id="user-name">Nome de Usuário</span>
+  </div>
+
+  <div class="container">
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-toggle" onclick="toggleSidebar()">☰</div>
+
       </div>
-      <div class="content">   
-        <div id="informacoes" class="content-section">
-          <iframe class="content-iframe" src="info.html"></iframe>
-        </div> 
-        <div id="doacao" class="content-section">
-          <iframe class="content-iframe" src="doacao.html"></iframe>
-        </div> 
-        <div id="historico" class="content-section">
-          <iframe class="content-iframe" src="historico.html"></iframe>
-        </div>
-        <div id="dashboard" class="content-section">
-          <iframe class="content-iframe" src="dashboard.html"></iframe>
-        </div>        
-        <div id="configuracoes" class="content-section">
-          <iframe class="content-iframe" src="config.html"></iframe>
-        </div>
+      <div class="sidebar-icons">
+
       </div>
     </div>
-    <script src="../assets/js/index/index.js"></script>
-  </body>
+    <div class="content">
+      <div id="index">
+        <h1>Bem vindo ao sistema de agendamento do Hemomar</h1>
+      </div>
+      <div id="informacoes" class="content-section">
+        <iframe class="content-iframe" src="info.html"></iframe>
+      </div>
+      <div id="doacao" class="content-section">
+        <iframe class="content-iframe" src="doacao.html"></iframe>
+      </div>
+      <div id="historico" class="content-section">
+        <iframe class="content-iframe" src="historico.html"></iframe>
+      </div>
+      <div id="dashboard" class="content-section">
+        <iframe class="content-iframe" src="dashboard.html"></iframe>
+      </div>
+      <div id="perfil" class="content-section">
+        <iframe class="content-iframe" src="perfil.html"></iframe>
+      </div>
+    </div>
+  </div>
+  <script src="../assets/js/index/index.js"></script>
+</body>
+
 </html>
